@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		E71689D119F388ED008091A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689D019F388ED008091A9 /* AppDelegate.swift */; };
 		E71689D419F388ED008091A9 /* RecommendIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E71689D219F388ED008091A9 /* RecommendIt.xcdatamodeld */; };
-		E71689D619F388ED008091A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689D519F388ED008091A9 /* ViewController.swift */; };
 		E71689D919F388ED008091A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71689D719F388ED008091A9 /* Main.storyboard */; };
 		E71689DB19F388ED008091A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71689DA19F388ED008091A9 /* Images.xcassets */; };
 		E71689DE19F388ED008091A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71689DC19F388ED008091A9 /* LaunchScreen.xib */; };
 		E71689EA19F388ED008091A9 /* RecommendItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689E919F388ED008091A9 /* RecommendItTests.swift */; };
+		E74992C519F4CACD0076E999 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C419F4CACD0076E999 /* AddNewViewController.swift */; };
+		E74992C719F4DA680076E999 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C619F4DA680076E999 /* EditViewController.swift */; };
+		E7939C0719F390A5000BAD75 /* StreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0619F390A5000BAD75 /* StreamController.swift */; };
+		E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0819F392C1000BAD75 /* LocationCell.swift */; };
+		E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0C19F395AC000BAD75 /* LocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +35,17 @@
 		E71689CF19F388ED008091A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E71689D019F388ED008091A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E71689D319F388ED008091A9 /* RecommendIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecommendIt.xcdatamodel; sourceTree = "<group>"; };
-		E71689D519F388ED008091A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E71689D819F388ED008091A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E71689DA19F388ED008091A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E71689DD19F388ED008091A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E71689E319F388ED008091A9 /* RecommendItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecommendItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71689E819F388ED008091A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E71689E919F388ED008091A9 /* RecommendItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItTests.swift; sourceTree = "<group>"; };
+		E74992C419F4CACD0076E999 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
+		E74992C619F4DA680076E999 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		E7939C0619F390A5000BAD75 /* StreamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamController.swift; path = ../StreamController.swift; sourceTree = "<group>"; };
+		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = ../LocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				E71689D019F388ED008091A9 /* AppDelegate.swift */,
-				E71689D519F388ED008091A9 /* ViewController.swift */,
+				E7939C0619F390A5000BAD75 /* StreamController.swift */,
+				E7939C0C19F395AC000BAD75 /* LocationModel.swift */,
+				E7939C0819F392C1000BAD75 /* LocationCell.swift */,
+				E74992C419F4CACD0076E999 /* AddNewViewController.swift */,
+				E74992C619F4DA680076E999 /* EditViewController.swift */,
 				E71689D719F388ED008091A9 /* Main.storyboard */,
 				E71689DA19F388ED008091A9 /* Images.xcassets */,
 				E71689DC19F388ED008091A9 /* LaunchScreen.xib */,
@@ -215,9 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71689D619F388ED008091A9 /* ViewController.swift in Sources */,
+				E7939C0719F390A5000BAD75 /* StreamController.swift in Sources */,
+				E74992C519F4CACD0076E999 /* AddNewViewController.swift in Sources */,
 				E71689D119F388ED008091A9 /* AppDelegate.swift in Sources */,
+				E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */,
+				E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */,
 				E71689D419F388ED008091A9 /* RecommendIt.xcdatamodeld in Sources */,
+				E74992C719F4DA680076E999 /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +425,7 @@
 				E71689EF19F388ED008091A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E71689F019F388ED008091A9 /* Build configuration list for PBXNativeTarget "RecommendItTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +434,7 @@
 				E71689F219F388ED008091A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
