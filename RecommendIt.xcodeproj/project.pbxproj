@@ -43,9 +43,9 @@
 		E71689E919F388ED008091A9 /* RecommendItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItTests.swift; sourceTree = "<group>"; };
 		E74992C419F4CACD0076E999 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		E74992C619F4DA680076E999 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		E7939C0619F390A5000BAD75 /* StreamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamController.swift; path = ../StreamController.swift; sourceTree = "<group>"; };
+		E7939C0619F390A5000BAD75 /* StreamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamController.swift; path = RecommendIt/StreamController.swift; sourceTree = SOURCE_ROOT; };
 		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
-		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = ../LocationModel.swift; sourceTree = "<group>"; };
+		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = RecommendIt/LocationModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
