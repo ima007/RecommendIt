@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84B6B2A5D05B6C326F7A545C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CEA696185053CEF054CA87 /* libPods.a */; };
 		E71689D119F388ED008091A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689D019F388ED008091A9 /* AppDelegate.swift */; };
 		E71689D419F388ED008091A9 /* RecommendIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E71689D219F388ED008091A9 /* RecommendIt.xcdatamodeld */; };
 		E71689D919F388ED008091A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71689D719F388ED008091A9 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 		E71689EA19F388ED008091A9 /* RecommendItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689E919F388ED008091A9 /* RecommendItTests.swift */; };
 		E74992C519F4CACD0076E999 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C419F4CACD0076E999 /* AddNewViewController.swift */; };
 		E74992C719F4DA680076E999 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C619F4DA680076E999 /* EditViewController.swift */; };
+		E751039A1A31542200F230B5 /* Yelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75103991A31542200F230B5 /* Yelp.swift */; };
+		E751039E1A31752C00F230B5 /* YelpBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751039D1A31752C00F230B5 /* YelpBusinessModel.swift */; };
 		E7939C0719F390A5000BAD75 /* StreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0619F390A5000BAD75 /* StreamController.swift */; };
 		E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0819F392C1000BAD75 /* LocationCell.swift */; };
 		E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0C19F395AC000BAD75 /* LocationModel.swift */; };
@@ -31,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11CEA696185053CEF054CA87 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD6A88241C10EA0608C3287 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E4FFB717ED5B8A91B7505DC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E71689CB19F388ED008091A9 /* RecommendIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecommendIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71689CF19F388ED008091A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E71689D019F388ED008091A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,9 @@
 		E71689E919F388ED008091A9 /* RecommendItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItTests.swift; sourceTree = "<group>"; };
 		E74992C419F4CACD0076E999 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		E74992C619F4DA680076E999 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		E75103961A31539100F230B5 /* RecommendIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecommendIt-Bridging-Header.h"; sourceTree = "<group>"; };
+		E75103991A31542200F230B5 /* Yelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yelp.swift; sourceTree = "<group>"; };
+		E751039D1A31752C00F230B5 /* YelpBusinessModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpBusinessModel.swift; sourceTree = "<group>"; };
 		E7939C0619F390A5000BAD75 /* StreamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamController.swift; path = RecommendIt/StreamController.swift; sourceTree = SOURCE_ROOT; };
 		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = RecommendIt/LocationModel.swift; sourceTree = SOURCE_ROOT; };
@@ -53,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B6B2A5D05B6C326F7A545C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +76,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34250CC821A289ECF32BBEB4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BD6A88241C10EA0608C3287 /* Pods.debug.xcconfig */,
+				E4FFB717ED5B8A91B7505DC1 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		68269A26D20288D015869CC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11CEA696185053CEF054CA87 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E71689C219F388ED008091A9 = {
 			isa = PBXGroup;
 			children = (
 				E71689CD19F388ED008091A9 /* RecommendIt */,
 				E71689E619F388ED008091A9 /* RecommendItTests */,
 				E71689CC19F388ED008091A9 /* Products */,
+				34250CC821A289ECF32BBEB4 /* Pods */,
+				68269A26D20288D015869CC7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,11 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				E71689D019F388ED008091A9 /* AppDelegate.swift */,
-				E7939C0619F390A5000BAD75 /* StreamController.swift */,
-				E7939C0C19F395AC000BAD75 /* LocationModel.swift */,
-				E7939C0819F392C1000BAD75 /* LocationCell.swift */,
-				E74992C419F4CACD0076E999 /* AddNewViewController.swift */,
-				E74992C619F4DA680076E999 /* EditViewController.swift */,
+				E75103A11A31760300F230B5 /* API */,
+				E751039F1A3175AE00F230B5 /* Models */,
+				E75103A01A3175E600F230B5 /* Controllers */,
 				E71689D719F388ED008091A9 /* Main.storyboard */,
 				E71689DA19F388ED008091A9 /* Images.xcassets */,
 				E71689DC19F388ED008091A9 /* LaunchScreen.xib */,
@@ -106,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E71689CF19F388ED008091A9 /* Info.plist */,
+				E75103961A31539100F230B5 /* RecommendIt-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -127,6 +155,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E751039F1A3175AE00F230B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E7939C0C19F395AC000BAD75 /* LocationModel.swift */,
+				E7939C0819F392C1000BAD75 /* LocationCell.swift */,
+				E751039D1A31752C00F230B5 /* YelpBusinessModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E75103A01A3175E600F230B5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E74992C419F4CACD0076E999 /* AddNewViewController.swift */,
+				E74992C619F4DA680076E999 /* EditViewController.swift */,
+				E7939C0619F390A5000BAD75 /* StreamController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E75103A11A31760300F230B5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E75103991A31542200F230B5 /* Yelp.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E71689ED19F388ED008091A9 /* Build configuration list for PBXNativeTarget "RecommendIt" */;
 			buildPhases = (
+				67E4634F29F1413E672033A6 /* Check Pods Manifest.lock */,
 				E71689C719F388ED008091A9 /* Sources */,
 				E71689C819F388ED008091A9 /* Frameworks */,
 				E71689C919F388ED008091A9 /* Resources */,
+				664DC612155394C4440754EB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,6 +280,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		664DC612155394C4440754EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67E4634F29F1413E672033A6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E71689C719F388ED008091A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -233,7 +324,9 @@
 				E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */,
 				E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */,
 				E71689D419F388ED008091A9 /* RecommendIt.xcdatamodeld in Sources */,
+				E751039E1A31752C00F230B5 /* YelpBusinessModel.swift in Sources */,
 				E74992C719F4DA680076E999 /* EditViewController.swift in Sources */,
+				E751039A1A31542200F230B5 /* Yelp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,21 +447,28 @@
 		};
 		E71689EE19F388ED008091A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BD6A88241C10EA0608C3287 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RecommendIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecommendIt/RecommendIt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		E71689EF19F388ED008091A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4FFB717ED5B8A91B7505DC1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RecommendIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecommendIt/RecommendIt-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9B3265E2-A10D-4B47-9156-EDAE63064FE5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RecommendIt</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F99A508F0D65C1806145A344B3EE5374108625FD</key>
+		<string>github.com:derrickshowers/RecommendIt.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RecommendIt.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F99A508F0D65C1806145A344B3EE5374108625FD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:derrickshowers/RecommendIt.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F99A508F0D65C1806145A344B3EE5374108625FD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F99A508F0D65C1806145A344B3EE5374108625FD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RecommendIt</string>
+		</dict>
+	</array>
+</dict>
+</plist>

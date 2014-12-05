@@ -33,8 +33,6 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     // UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
@@ -46,7 +44,7 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         cell.nameLabel.text = thisLocation.name
         
         // configure height, width, boundaries and stuff
-        cell.frame = CGRectMake(10, cell.frame.origin.y, self.view.frame.width - 20, cell.frame.height)
+        cell.frame = CGRectMake(0, cell.frame.origin.y, self.collectionView.frame.width, cell.frame.height)
         
         return cell
     }
