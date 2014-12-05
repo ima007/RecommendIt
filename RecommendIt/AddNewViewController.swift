@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddNewViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddNewViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var resultsTableView: UITableView!
     
@@ -23,6 +23,8 @@ class AddNewViewController: UIViewController, UITableViewDataSource, UITableView
     
     var client: YelpClient!
     var results: [YelpBusinessModel] = []
+    var cities: [String] = []
+    var currentCity = ""
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,18 +33,22 @@ class AddNewViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        getBusinessResults("Oysters")
+        
+        // city selection
+        cities = ["San Jose","San Francisco","New York","Lancaster"]
+        currentCity = cities[0]
     }
     
     // Get the results from Yelp
     func getBusinessResults(searchTerm: String) -> Void {
-        client.searchWithTerm(searchTerm, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        client.searchWithTerm(searchTerm, location: currentCity, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            self.results.removeAll(keepCapacity: false)
             let businesses = response["businesses"] as NSArray
             
             for business in businesses {
                 var businessModel = YelpBusinessModel(name: business["name"] as String)
-                businessModel.image = (business["image_url"] as String)
-                businessModel.url = (business["mobile_url"] as String)
+                businessModel.image = business["image_url"] as? String
+                businessModel.url = business["mobile_url"] as? String
                 // TODO: Figure out how to get city
                 // businessModel.city = (business["location"] as String)
                 self.results.append(businessModel)
@@ -52,6 +58,30 @@ class AddNewViewController: UIViewController, UITableViewDataSource, UITableView
                 println(error)
         }
     }
+    
+    // UIPickerViewDataSource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return cities.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        var title = NSAttributedString(string: cities[row])
+        return title
+    }
+    
+    // UIPickerViewDelgate
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentCity = cities[row]
+    }
+    
+    // UISearchBarDelegate
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        getBusinessResults(searchText)
+    }
 
     // UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,10 +89,9 @@ class AddNewViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("cellForRowAtIndexPath")
         let result = self.results[indexPath.row] as YelpBusinessModel
         var cell = UITableViewCell()
-        var label = UILabel(frame: CGRectMake(25, 0, cell.frame.width - 25, cell.frame.height))
+        var label = UILabel(frame: CGRectMake(25, 0, cell.frame.width - 50, cell.frame.height))
         label.text = result.name
         cell.addSubview(label)
         cell.sizeToFit()
