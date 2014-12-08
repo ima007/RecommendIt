@@ -42,6 +42,7 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         var cell:LocationCell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
         cell.nameLabel.text = thisLocation.name
+        cell.imageView.image = UIImage(data: thisLocation.image)
         
         // configure height, width, boundaries and stuff
         cell.frame = CGRectMake(0, cell.frame.origin.y, self.collectionView.frame.width, cell.frame.height)
@@ -49,22 +50,16 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         return cell
     }
     
-    
-    
     // UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("EditSegue", sender: self)
     }
     
     
-    
-    
     // NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         collectionView.reloadData()
     }
-    
-    
     
     // helper functions
     func setupController() -> NSFetchedResultsController {

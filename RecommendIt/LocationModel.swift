@@ -16,5 +16,6 @@ class LocationModel: NSManagedObject {
     @NSManaged var name:String
     @NSManaged var notes:String
     @NSManaged var recommendedBy:String
+    @NSManaged var image:NSData
     
 }
