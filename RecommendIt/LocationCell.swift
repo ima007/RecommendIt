@@ -12,4 +12,5 @@ import UIKit
 class LocationCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var notesTextView: UITextView!
 }

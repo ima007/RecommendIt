@@ -24,7 +24,11 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         fetchedResultsController.delegate = self
         fetchedResultsController.performFetch(nil)
         
-        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+        // custom nav bar
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = titleDict
         
     }
 
@@ -43,9 +47,20 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
         cell.nameLabel.text = thisLocation.name
         cell.imageView.image = UIImage(data: thisLocation.image)
+        cell.notesTextView.text = thisLocation.notes
         
-        // configure height, width, boundaries and stuff
-        cell.frame = CGRectMake(0, cell.frame.origin.y, self.collectionView.frame.width, cell.frame.height)
+        // make things look a bit nicer
+        cell.imageView.layer.cornerRadius = 5.0
+        cell.imageView.clipsToBounds = true
+        
+        // border
+        var bottomBorder = CALayer()
+        bottomBorder.frame = CGRectMake(10, cell.frame.height - 1, cell.frame.width - 20, 1)
+        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
+        cell.layer.addSublayer(bottomBorder)
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         
         return cell
     }
@@ -54,7 +69,6 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("EditSegue", sender: self)
     }
-    
     
     // NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
