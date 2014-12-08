@@ -59,9 +59,6 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
         cell.layer.addSublayer(bottomBorder)
         
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
         return cell
     }
     
