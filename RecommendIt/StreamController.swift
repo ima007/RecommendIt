@@ -45,9 +45,10 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell:LocationCell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
+        
         cell.nameLabel.text = thisLocation.name
         cell.imageView.image = UIImage(data: thisLocation.image)
-        cell.notesTextView.text = thisLocation.notes
+        cell.notesLabel.text = thisLocation.notes
         
         // make things look a bit nicer
         cell.imageView.layer.cornerRadius = 5.0
@@ -55,9 +56,11 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         
         // border
         var bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(10, cell.frame.height - 1, cell.frame.width - 20, 1)
+        bottomBorder.frame = CGRectMake(10, cell.frame.height - 0.5, cell.frame.width - 20, 0.5)
         bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
         cell.layer.addSublayer(bottomBorder)
+        
+        println("collectionView \(cell.frame)")
         
         return cell
     }
