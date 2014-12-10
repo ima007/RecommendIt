@@ -13,7 +13,7 @@ class LocationCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var notesLabel: UILabel!
-    
+
     override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes! {
         println("preferredLayoutAttributesFittingAttributes \(layoutAttributes.frame)")
         return layoutAttributes

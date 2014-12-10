@@ -1,24 +1,30 @@
 //
-//  StreamController.swift
+//  StreamCollectionViewController.swift
 //  RecommendIt
 //
-//  Created by Derrick Showers on 10/18/14.
+//  Created by Derrick Showers on 12/9/14.
 //  Copyright (c) 2014 Derrick Showers. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class StreamController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+let reuseIdentifier = "Cell"
+
+class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Register cell classes
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
         // get saved locations
         fetchedResultsController = setupController()
         fetchedResultsController.delegate = self
@@ -30,19 +36,28 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
+//        var layout: UICollectionViewFlowLayout = self.collectionView?.collectionViewLayout as UICollectionViewFlowLayout
+//        layout.estimatedItemSize = CGSizeMake(370.0, 25.0)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        //#warning Incomplete method implementation -- Return the number of sections
+        return 1
+    }
+
+
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //#warning Incomplete method implementation -- Return the number of items in the section
         return fetchedResultsController.sections![section].numberOfObjects
     }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell:LocationCell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
         
@@ -53,6 +68,7 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         // make things look a bit nicer
         cell.imageView.layer.cornerRadius = 5.0
         cell.imageView.clipsToBounds = true
+        cell.notesLabel.sizeToFit()
         
         // border
         var bottomBorder = CALayer()
@@ -64,15 +80,15 @@ class StreamController: UIViewController, UICollectionViewDelegate, UICollection
         
         return cell
     }
-    
+
     // UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("EditSegue", sender: self)
     }
     
     // NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionView.reloadData()
+        self.collectionView?.reloadData()
     }
     
     // helper functions

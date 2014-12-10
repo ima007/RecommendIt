@@ -19,7 +19,7 @@
 		E74992C719F4DA680076E999 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C619F4DA680076E999 /* EditViewController.swift */; };
 		E751039A1A31542200F230B5 /* Yelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75103991A31542200F230B5 /* Yelp.swift */; };
 		E751039E1A31752C00F230B5 /* YelpBusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751039D1A31752C00F230B5 /* YelpBusinessModel.swift */; };
-		E7939C0719F390A5000BAD75 /* StreamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0619F390A5000BAD75 /* StreamController.swift */; };
+		E78623221A37A604001EE40D /* StreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78623211A37A604001EE40D /* StreamCollectionViewController.swift */; };
 		E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0819F392C1000BAD75 /* LocationCell.swift */; };
 		E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0C19F395AC000BAD75 /* LocationModel.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +54,7 @@
 		E75103961A31539100F230B5 /* RecommendIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecommendIt-Bridging-Header.h"; sourceTree = "<group>"; };
 		E75103991A31542200F230B5 /* Yelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yelp.swift; sourceTree = "<group>"; };
 		E751039D1A31752C00F230B5 /* YelpBusinessModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpBusinessModel.swift; sourceTree = "<group>"; };
-		E7939C0619F390A5000BAD75 /* StreamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamController.swift; path = RecommendIt/StreamController.swift; sourceTree = SOURCE_ROOT; };
+		E78623211A37A604001EE40D /* StreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamCollectionViewController.swift; sourceTree = "<group>"; };
 		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = RecommendIt/LocationModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -173,7 +173,7 @@
 				E72E4E831A352E330082C5C5 /* AddNewViewController.swift */,
 				E74992C419F4CACD0076E999 /* SelectLocationViewController.swift */,
 				E74992C619F4DA680076E999 /* EditViewController.swift */,
-				E7939C0619F390A5000BAD75 /* StreamController.swift */,
+				E78623211A37A604001EE40D /* StreamCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -321,8 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7939C0719F390A5000BAD75 /* StreamController.swift in Sources */,
 				E74992C519F4CACD0076E999 /* SelectLocationViewController.swift in Sources */,
+				E78623221A37A604001EE40D /* StreamCollectionViewController.swift in Sources */,
 				E71689D119F388ED008091A9 /* AppDelegate.swift in Sources */,
 				E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */,
 				E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */,
