@@ -22,6 +22,7 @@
 		E78623221A37A604001EE40D /* StreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78623211A37A604001EE40D /* StreamCollectionViewController.swift */; };
 		E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0819F392C1000BAD75 /* LocationCell.swift */; };
 		E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0C19F395AC000BAD75 /* LocationModel.swift */; };
+		E7B0E6371A3A3FE800D28643 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E6361A3A3FE800D28643 /* LocationCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E78623211A37A604001EE40D /* StreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamCollectionViewController.swift; sourceTree = "<group>"; };
 		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = RecommendIt/LocationModel.swift; sourceTree = SOURCE_ROOT; };
+		E7B0E6361A3A3FE800D28643 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				E751039F1A3175AE00F230B5 /* Models */,
 				E75103A01A3175E600F230B5 /* Controllers */,
 				E71689D719F388ED008091A9 /* Main.storyboard */,
+				E7B0E6361A3A3FE800D28643 /* LocationCell.xib */,
 				E71689DA19F388ED008091A9 /* Images.xcassets */,
 				E71689DC19F388ED008091A9 /* LaunchScreen.xib */,
 				E71689D219F388ED008091A9 /* RecommendIt.xcdatamodeld */,
@@ -270,6 +273,7 @@
 			files = (
 				E71689D919F388ED008091A9 /* Main.storyboard in Resources */,
 				E71689DE19F388ED008091A9 /* LaunchScreen.xib in Resources */,
+				E7B0E6371A3A3FE800D28643 /* LocationCell.xib in Resources */,
 				E71689DB19F388ED008091A9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,21 +9,13 @@
 import UIKit
 import CoreData
 
-let reuseIdentifier = "Cell"
-
-class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UICollectionViewDelegateFlowLayout {
+class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // get saved locations
         fetchedResultsController = setupController()
@@ -36,8 +28,9 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
-//        var layout: UICollectionViewFlowLayout = self.collectionView?.collectionViewLayout as UICollectionViewFlowLayout
-//        layout.estimatedItemSize = CGSizeMake(370.0, 25.0)
+        // using a nib to have better control of the cell
+        var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
+        self.collectionView?.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
         
     }
 
@@ -47,13 +40,10 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
 
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return fetchedResultsController.sections![section].numberOfObjects
     }
 
@@ -68,17 +58,38 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         // make things look a bit nicer
         cell.imageView.layer.cornerRadius = 5.0
         cell.imageView.clipsToBounds = true
-        cell.notesLabel.sizeToFit()
-        
+
         // border
         var bottomBorder = CALayer()
         bottomBorder.frame = CGRectMake(10, cell.frame.height - 0.5, cell.frame.width - 20, 0.5)
         bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
         cell.layer.addSublayer(bottomBorder)
         
-        println("collectionView \(cell.frame)")
-        
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        // target width of each cell - widht of the collectionView
+        let targetWidth: CGFloat = collectionView.frame.width
+        
+        // setup a prototype cell
+        var cell: LocationCell = NSBundle.mainBundle().loadNibNamed("LocationCell", owner: self, options: nil)[0] as LocationCell
+        let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
+        cell.nameLabel.text = thisLocation.name
+        cell.notesLabel.text = thisLocation.notes
+        
+        // resize - layoutSubviews in LocationCell controller
+        cell.layoutIfNeeded()
+        
+        // get the size based on constraints
+        var size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        
+        // force width
+        size.width = targetWidth
+        
+        return size
+        
     }
 
     // UICollectionViewDelegate

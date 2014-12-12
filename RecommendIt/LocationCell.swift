@@ -13,9 +13,10 @@ class LocationCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var notesLabel: UILabel!
-
-    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes! {
-        println("preferredLayoutAttributesFittingAttributes \(layoutAttributes.frame)")
-        return layoutAttributes
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // set the max width, or else it will just be one long line of text
+        notesLabel.preferredMaxLayoutWidth = self.bounds.width - 111
     }
 }
