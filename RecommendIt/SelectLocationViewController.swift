@@ -8,9 +8,12 @@
 
 import UIKit
 
-class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var resultsTableView: UITableView!
+    @IBOutlet weak var locationSearch: UISearchBar!
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var currentCityView: UIView!
     
     // yelp stuff
     let yelpConsumerKey = "CIjHXVpOG4k6YQiuPVcP2g"
@@ -23,7 +26,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     var client: YelpClient!
     var results: [YelpBusinessModel] = []
-    var cities: [String] = []
     var currentCity = ""
     
     required init(coder aDecoder: NSCoder) {
@@ -35,9 +37,15 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
         // city selection
-        cities = ["San Jose","San Francisco","New York","Lancaster"]
-        currentCity = cities[0]
+        currentCity = "San Jose"
+        
+        cityNameLabel.text = currentCity.capitalizedString
+        
+        locationSearch.becomeFirstResponder()
+        
     }
+    
+    
     
     // Get the results from Yelp
     func getBusinessResults(searchTerm: String) -> Void {
@@ -57,25 +65,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error)
         }
-    }
-    
-    // UIPickerViewDataSource
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cities.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        var title = NSAttributedString(string: cities[row])
-        return title
-    }
-    
-    // UIPickerViewDelgate
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentCity = cities[row]
     }
     
     // UISearchBarDelegate
@@ -102,6 +91,21 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         cell.addSubview(label)
         cell.sizeToFit()
         return cell
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        var alertTextField = alertView.textFieldAtIndex(0)
+        cityNameLabel.text = alertTextField!.text.capitalizedString
+        currentCity = alertTextField!.text
+        locationSearch.becomeFirstResponder()
+    }
+    
+    @IBAction func changeButtonPressed(sender: AnyObject) {
+        var alert: UIAlertView = UIAlertView(title: "Choose Location", message: "Enter a city", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Change")
+        alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+        locationSearch.resignFirstResponder()
+        alert.show()
+        
     }
 
     override func didReceiveMemoryWarning() {

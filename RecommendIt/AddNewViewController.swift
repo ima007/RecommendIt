@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class AddNewViewController: UIViewController {
+class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var locationNameLabel: UILabel!
+    @IBOutlet weak var notesPlaceholderLabel: UILabel!
     
     var yelpBusiness: YelpBusinessModel!
     var thisLocation: LocationModel!
@@ -23,7 +24,7 @@ class AddNewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.notesTextView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +48,32 @@ class AddNewViewController: UIViewController {
         }
     }
     
+    // UITextView
+    func textViewDidChange(textView: UITextView) {
+        if textView.text == "" {
+            notesPlaceholderLabel.hidden = false
+        } else {
+            notesPlaceholderLabel.hidden = true
+        }
+    }
+    
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func saveButtonPressed(sender: AnyObject) {
         let description = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
+        
+        // check to make sure all required fields have been entered
+        if yelpBusiness == nil {
+            UIAlertView(title: "Oops", message: "You need to select a location", delegate: self, cancelButtonTitle: "Ok, let me try again").show()
+            return
+        }
+        if notesTextView.text == "" {
+            UIAlertView(title: "Oops", message: "You need to enter some notes", delegate: self, cancelButtonTitle: "Ok, let me try again").show()
+            return
+        }
+        
         thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
         thisLocation.name = yelpBusiness.name
         thisLocation.city = ""
