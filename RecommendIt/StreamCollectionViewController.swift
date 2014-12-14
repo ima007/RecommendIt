@@ -30,7 +30,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         
         // using a nib to have better control of the cell
         var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
-        self.collectionView?.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
+        self.collectionView!.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
         
     }
 
@@ -56,22 +56,16 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         cell.notesLabel.text = thisLocation.notes
         
         // make things look a bit nicer
-        cell.imageView.layer.cornerRadius = 5.0
+        cell.imageView.layer.cornerRadius = 2.0
         cell.imageView.clipsToBounds = true
 
-        // border
-        var bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(10, cell.frame.height - 0.5, cell.frame.width - 20, 0.5)
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
-        cell.layer.addSublayer(bottomBorder)
-        
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         // target width of each cell - widht of the collectionView
-        let targetWidth: CGFloat = collectionView.frame.width
+        let targetWidth: CGFloat = collectionView.frame.width - 20.0
         
         // setup a prototype cell
         var cell: LocationCell = NSBundle.mainBundle().loadNibNamed("LocationCell", owner: self, options: nil)[0] as LocationCell
