@@ -13,6 +13,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var noItemsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,12 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = titleDict
+        
+        // show a message if there are no recommendations
+        self.noItemsView = setupNewItemsView()
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            self.collectionView?.addSubview(self.noItemsView)
+        }
         
         // using a nib to have better control of the cell
         var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
@@ -48,6 +55,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         var cell:LocationCell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
         
@@ -94,6 +102,11 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     // NSFetchedResultsControllerDelegate
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
+        if fetchedResultsController.fetchedObjects?.count == 0 {
+            self.collectionView?.addSubview(noItemsView)
+        } else {
+            noItemsView.removeFromSuperview()
+        }
     }
     
     // helper functions
@@ -103,6 +116,22 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         request.sortDescriptors = [sortDescriptor]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
+    }
+    
+    func setupNewItemsView() -> UIView {
+        var theView: UIView = UIView(frame: self.collectionView!.frame)
+        
+        var theLabel: UILabel = UILabel(frame: CGRectMake((self.collectionView!.frame.width / 2) - 125, 50, 250, 100))
+        theLabel.font = UIFont(name: "Helvetica Neue", size: 13.0)
+        theLabel.numberOfLines = 0
+        theLabel.textColor = UIColor.darkGrayColor()
+        theLabel.textAlignment = NSTextAlignment.Center
+        
+        theLabel.text = "It appears that you haven't yet added any recommendations! Get out there and chat it up with some friends about food. Once you have a recommendation, press the + button in the upper right corner to add it!"
+        
+        theView.addSubview(theLabel)
+
+        return theView
     }
 
 }
