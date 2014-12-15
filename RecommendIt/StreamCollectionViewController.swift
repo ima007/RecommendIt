@@ -14,6 +14,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var noItemsView: UIView!
+    var selectedLocation: LocationModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,16 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
 
     // UICollectionViewDelegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        selectedLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
         self.performSegueWithIdentifier("EditSegue", sender: self)
+    }
+    
+    // UIViewController
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditSegue" {
+            let editVC:EditViewController = segue.destinationViewController as EditViewController
+            editVC.streamVC = self
+        }
     }
     
     // NSFetchedResultsControllerDelegate
@@ -132,6 +142,11 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         theView.addSubview(theLabel)
 
         return theView
+    }
+    
+    func deleteLocation(location: LocationModel) {
+        managedObjectContext.deleteObject(location)
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
     }
 
 }
