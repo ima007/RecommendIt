@@ -38,14 +38,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         
         // city selection
         currentCity = "San Jose"
-        
         cityNameLabel.text = currentCity.capitalizedString
-        
         locationSearch.becomeFirstResponder()
         
     }
-    
-    
     
     // Get the results from Yelp
     func getBusinessResults(searchTerm: String) -> Void {
