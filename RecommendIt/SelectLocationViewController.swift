@@ -94,6 +94,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            return
+        }
+        
         var alertTextField = alertView.textFieldAtIndex(0)
         cityNameLabel.text = alertTextField!.text.capitalizedString
         currentCity = alertTextField!.text
