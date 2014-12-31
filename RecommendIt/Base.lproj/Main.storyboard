@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-1X-gt5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-1X-gt5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -352,12 +352,6 @@
                             <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaX-j7-XVa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xod-R5-aER">
-                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ko-cY-JFJ">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -370,7 +364,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="112" id="hJY-PR-0iP"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -384,13 +378,18 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xod-R5-aER">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Xod-R5-aER" firstAttribute="leading" secondItem="DiK-Oq-2jI" secondAttribute="trailing" constant="5" id="5bu-jo-52N"/>
+                                    <constraint firstAttribute="centerY" secondItem="Xod-R5-aER" secondAttribute="centerY" constant="1" id="5km-S7-9Jf"/>
                                     <constraint firstAttribute="height" constant="38" id="EUj-D9-MTv"/>
-                                    <constraint firstItem="Xod-R5-aER" firstAttribute="leading" secondItem="DiK-Oq-2jI" secondAttribute="trailing" constant="3" id="MfE-g2-hnM">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="10"/>
-                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="2ko-cY-JFJ" secondAttribute="trailing" constant="17" id="OfZ-AU-gi7"/>
                                     <constraint firstAttribute="centerY" secondItem="2ko-cY-JFJ" secondAttribute="centerY" id="g6n-Sz-Yni"/>
                                     <constraint firstItem="DiK-Oq-2jI" firstAttribute="baseline" secondItem="Xod-R5-aER" secondAttribute="baseline" constant="1" id="mf9-uC-f8W">
@@ -402,16 +401,17 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="Xod-R5-aER"/>
                                         <exclude reference="2ko-cY-JFJ"/>
                                         <exclude reference="DiK-Oq-2jI"/>
+                                        <exclude reference="Xod-R5-aER"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="EUj-D9-MTv"/>
                                         <exclude reference="mf9-uC-f8W"/>
                                         <exclude reference="rB2-l8-VkD"/>
                                         <exclude reference="tJr-3E-Hvg"/>
-                                        <exclude reference="MfE-g2-hnM"/>
+                                        <exclude reference="5bu-jo-52N"/>
+                                        <exclude reference="5km-S7-9Jf"/>
                                         <exclude reference="uAt-zQ-gP6"/>
                                         <exclude reference="OfZ-AU-gi7"/>
                                         <exclude reference="g6n-Sz-Yni"/>
@@ -419,16 +419,17 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
-                                        <include reference="Xod-R5-aER"/>
                                         <include reference="2ko-cY-JFJ"/>
                                         <include reference="DiK-Oq-2jI"/>
+                                        <include reference="Xod-R5-aER"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="EUj-D9-MTv"/>
-                                        <include reference="mf9-uC-f8W"/>
+                                        <exclude reference="mf9-uC-f8W"/>
                                         <include reference="rB2-l8-VkD"/>
                                         <include reference="tJr-3E-Hvg"/>
-                                        <include reference="MfE-g2-hnM"/>
+                                        <include reference="5bu-jo-52N"/>
+                                        <include reference="5km-S7-9Jf"/>
                                         <exclude reference="uAt-zQ-gP6"/>
                                         <include reference="OfZ-AU-gi7"/>
                                         <include reference="g6n-Sz-Yni"/>
@@ -439,8 +440,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Add A Recommendation" id="Qch-Za-GbF">
-                                        <barButtonItem key="leftBarButtonItem" title="X" id="EeT-mv-0Ax">
+                                    <navigationItem title="Add New" id="Qch-Za-GbF">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="EeT-mv-0Ax">
                                             <connections>
                                                 <action selector="cancelButtonPressed:" destination="7Ra-Kl-D20" id="fJJ-7q-96E"/>
                                             </connections>

@@ -33,6 +33,7 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     }
     
     override func viewDidAppear(animated: Bool) {
+        notesTextView.becomeFirstResponder()
         if (yelpBusiness != nil) {
             addLocationButton.hidden = true
             locationNameLabel.text = yelpBusiness.name
