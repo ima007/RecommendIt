@@ -67,11 +67,11 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         
         // check to make sure all required fields have been entered
         if yelpBusiness == nil {
-            UIAlertView(title: "Oops", message: "You need to select a location", delegate: self, cancelButtonTitle: "Ok, let me try again").show()
+            showError("You need to select a location")
             return
         }
         if notesTextView.text == "" {
-            UIAlertView(title: "Oops", message: "You need to enter some notes", delegate: self, cancelButtonTitle: "Ok, let me try again").show()
+            showError("You need to enter some notes")
             return
         }
         
@@ -98,5 +98,9 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         })
         
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showError(msg: String) {
+        UIAlertView(title: "Oops", message: msg, delegate: self, cancelButtonTitle: "Ok, let me try again").show()
     }
 }
