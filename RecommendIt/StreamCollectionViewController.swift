@@ -41,6 +41,12 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         self.collectionView!.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
         
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        // reset the view
+        self.collectionView!.frame.origin.y = 0
+        self.navigationController?.view.frame.origin.y = 0
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -106,6 +112,13 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         if segue.identifier == "EditSegue" {
             let editVC:EditViewController = segue.destinationViewController as EditViewController
             editVC.streamVC = self
+        }
+        if segue.identifier == "AddNewSegue" {
+            // animate this view to fall back
+            UIView.animateWithDuration(1, animations: {
+                self.collectionView!.frame.origin.y = 500.0
+                self.navigationController?.view.frame.origin.y = 500.0
+            })
         }
     }
     

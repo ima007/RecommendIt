@@ -100,6 +100,7 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // helper functions
     func showError(msg: String) {
         UIAlertView(title: "Oops", message: msg, delegate: self, cancelButtonTitle: "Ok, let me try again").show()
     }

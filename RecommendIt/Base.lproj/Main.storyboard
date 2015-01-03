@@ -37,7 +37,7 @@
                     <navigationItem key="navigationItem" title="My Recommendations" id="1OY-4O-CPO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hy9-bX-OG0">
                             <connections>
-                                <segue destination="7Ra-Kl-D20" kind="presentation" id="P9V-Di-u14"/>
+                                <segue destination="7Ra-Kl-D20" kind="presentation" identifier="AddNewSegue" id="P9V-Di-u14"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
