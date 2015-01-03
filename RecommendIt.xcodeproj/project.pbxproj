@@ -23,6 +23,7 @@
 		E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0819F392C1000BAD75 /* LocationCell.swift */; };
 		E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7939C0C19F395AC000BAD75 /* LocationModel.swift */; };
 		E7B0E6371A3A3FE800D28643 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E6361A3A3FE800D28643 /* LocationCell.xib */; };
+		E7E8A8C41A57992100ACB578 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E8A8C31A57992100ACB578 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E7939C0819F392C1000BAD75 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		E7939C0C19F395AC000BAD75 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationModel.swift; path = RecommendIt/LocationModel.swift; sourceTree = SOURCE_ROOT; };
 		E7B0E6361A3A3FE800D28643 /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		E7E8A8C31A57992100ACB578 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7E8A8C41A57992100ACB578 /* CoreLocation.framework in Frameworks */,
 				84B6B2A5D05B6C326F7A545C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +95,7 @@
 		68269A26D20288D015869CC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7E8A8C31A57992100ACB578 /* CoreLocation.framework */,
 				11CEA696185053CEF054CA87 /* libPods.a */,
 			);
 			name = Frameworks;

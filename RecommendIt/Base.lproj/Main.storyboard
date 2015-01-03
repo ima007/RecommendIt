@@ -79,7 +79,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.85000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y93-vH-F5J">
+                            <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y93-vH-F5J">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -96,7 +96,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <searchBar alpha="0.80000000000000004" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AZo-9m-KHH">
+                            <searchBar alpha="0.84999999999999998" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AZo-9m-KHH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Cps-OU-eBc"/>

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate {
+class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var locationSearch: UISearchBar!
@@ -28,6 +29,8 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     var results: [YelpBusinessModel] = []
     var currentCity = ""
     
+    let locationManager = CLLocationManager()
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -40,6 +43,12 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         currentCity = "San Jose"
         cityNameLabel.text = currentCity.capitalizedString
         locationSearch.becomeFirstResponder()
+        
+        // setup the location manager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
     }
     
@@ -94,10 +103,25 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             return
         }
         
+        // stop getting currentn location
+        self.locationManager.stopUpdatingLocation()
+        
         var alertTextField = alertView.textFieldAtIndex(0)
         cityNameLabel.text = alertTextField!.text.capitalizedString
         currentCity = alertTextField!.text
         locationSearch.becomeFirstResponder()
+    }
+    
+    // CLLocationManagerDelegate
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
+            if placemarks.count > 0 {
+                var locality = (placemarks[0] as CLPlacemark).locality
+                println(locality)
+                self.currentCity = locality
+                self.cityNameLabel.text = locality
+            }
+        })
     }
     
     @IBAction func changeButtonPressed(sender: AnyObject) {

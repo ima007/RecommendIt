@@ -8,13 +8,15 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var noItemsView: UIView!
     var selectedLocation: LocationModel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
