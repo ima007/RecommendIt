@@ -50,6 +50,13 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+        // setup cancel button above keyboard
+        var cancelButton = UIButton(frame: CGRectMake(0.0, 0.0, self.view.frame.width, 50.0))
+        cancelButton.backgroundColor = UIColor.lightGrayColor()
+        cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        cancelButton.addTarget(self, action: Selector("cancelButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        locationSearch.inputAccessoryView = cancelButton
     }
     
     // Get the results from Yelp
@@ -130,6 +137,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         locationSearch.resignFirstResponder()
         alert.show()
         
+    }
+    
+    func cancelButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

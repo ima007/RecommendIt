@@ -236,19 +236,19 @@
                                 <exclude reference="ijY-03-QUR"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0Bv-4L-hho"/>
-                                <exclude reference="6xK-Ja-eVh"/>
-                                <exclude reference="IES-MM-awz"/>
-                                <exclude reference="sDV-Sa-V19"/>
                                 <exclude reference="KkA-EE-7Fp"/>
                                 <exclude reference="aY9-z3-xRE"/>
                                 <exclude reference="ksM-H7-n7p"/>
-                                <exclude reference="Aj9-Fr-zmN"/>
-                                <exclude reference="VXm-Kk-SSY"/>
-                                <exclude reference="zWn-2c-jab"/>
+                                <exclude reference="6xK-Ja-eVh"/>
+                                <exclude reference="IES-MM-awz"/>
+                                <exclude reference="sDV-Sa-V19"/>
                                 <exclude reference="2WL-a9-B4J"/>
                                 <exclude reference="TsI-OI-0kB"/>
                                 <exclude reference="ycR-KN-vbh"/>
+                                <exclude reference="Aj9-Fr-zmN"/>
+                                <exclude reference="VXm-Kk-SSY"/>
+                                <exclude reference="zWn-2c-jab"/>
+                                <exclude reference="0Bv-4L-hho"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -259,19 +259,19 @@
                                 <include reference="ijY-03-QUR"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="0Bv-4L-hho"/>
-                                <include reference="6xK-Ja-eVh"/>
-                                <include reference="IES-MM-awz"/>
-                                <include reference="sDV-Sa-V19"/>
                                 <include reference="KkA-EE-7Fp"/>
                                 <include reference="aY9-z3-xRE"/>
                                 <include reference="ksM-H7-n7p"/>
-                                <include reference="Aj9-Fr-zmN"/>
-                                <include reference="VXm-Kk-SSY"/>
-                                <include reference="zWn-2c-jab"/>
+                                <include reference="6xK-Ja-eVh"/>
+                                <include reference="IES-MM-awz"/>
+                                <include reference="sDV-Sa-V19"/>
                                 <include reference="2WL-a9-B4J"/>
                                 <include reference="TsI-OI-0kB"/>
                                 <include reference="ycR-KN-vbh"/>
+                                <include reference="Aj9-Fr-zmN"/>
+                                <include reference="VXm-Kk-SSY"/>
+                                <include reference="zWn-2c-jab"/>
+                                <include reference="0Bv-4L-hho"/>
                             </mask>
                         </variation>
                     </view>
