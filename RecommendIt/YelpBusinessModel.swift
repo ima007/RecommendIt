@@ -11,6 +11,7 @@ import Foundation
 class YelpBusinessModel {
     
     var name: String
+    var yelpId: String?
     var image: String?
     var url: String?
     var city: String?

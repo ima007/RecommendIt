@@ -87,6 +87,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         // setup a prototype cell
         var cell: LocationCell = NSBundle.mainBundle().loadNibNamed("LocationCell", owner: self, options: nil)[0] as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
+        
         cell.nameLabel.text = thisLocation.name
         cell.notesLabel.text = thisLocation.notes
         
@@ -138,7 +139,9 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     func setupController() -> NSFetchedResultsController {
         var request = NSFetchRequest(entityName: "Location")
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let predicate = NSPredicate(format: "archived == NO")
         request.sortDescriptors = [sortDescriptor]
+        request.predicate = predicate
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
     }

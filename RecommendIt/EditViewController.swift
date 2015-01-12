@@ -36,16 +36,42 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 0 {
-            return
-        } else {
-            streamVC.deleteLocation(loc)
+        
+        // archive alert
+        if alertView.tag == 1 {
+            loc.archived = true
             self.navigationController?.popViewControllerAnimated(true)
+            if buttonIndex == 1 {
+                let isYelpInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string: "yelp://")!)
+                if isYelpInstalled {
+                    UIApplication.sharedApplication().openURL(NSURL(string: "yelp:///biz/\(loc.yelpId)")!)
+                } else {
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://yelp.com/biz/\(loc.yelpId)")!)
+                }
+            }
         }
+            
+        // delete alert
+        else {
+            if buttonIndex == 0 {
+                return
+            } else {
+                streamVC.deleteLocation(loc)
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+        
+    }
+    
+    @IBAction func archiveButtonPressed(sender: AnyObject) {
+        var alert: UIAlertView = UIAlertView(title: "Archived!", message: "Would you like to go to the location's Yelp page so that you can review and/or check-in?", delegate: self, cancelButtonTitle: "Nah. Yelp is for losers.", otherButtonTitles: "Of course! Why wouldn't I?")
+        alert.tag = 1
+        alert.show()
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
         var alert: UIAlertView = UIAlertView(title: "Are you sure?", message: "If you delete this recommendation, it will be gone forever!", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete")
+        alert.tag = 2
         alert.show()
     }
 

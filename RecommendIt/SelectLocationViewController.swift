@@ -67,6 +67,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             
             for business in businesses {
                 var businessModel = YelpBusinessModel(name: business["name"] as String)
+                businessModel.yelpId = business["id"] as? String
                 businessModel.image = business["image_url"] as? String
                 businessModel.url = business["mobile_url"] as? String
                 // TODO: Figure out how to get city

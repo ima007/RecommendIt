@@ -77,8 +77,10 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         
         thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
         thisLocation.name = yelpBusiness.name
+        thisLocation.yelpId = yelpBusiness.yelpId!
         thisLocation.city = ""
         thisLocation.notes = notesTextView.text
+        thisLocation.archived = false
         
         var imageUrl:NSURL = NSURL(string: yelpBusiness.image!)!
         let request:NSURLRequest = NSURLRequest(URL: imageUrl)
