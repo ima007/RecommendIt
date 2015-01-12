@@ -125,7 +125,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
             if placemarks.count > 0 {
                 var locality = (placemarks[0] as CLPlacemark).locality
-                println(locality)
                 self.currentCity = locality
                 self.cityNameLabel.text = locality
             }
