@@ -114,6 +114,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         // stop getting currentn location
         self.locationManager.stopUpdatingLocation()
         
+        // clear current search
+        self.results = []
+        resultsTableView.reloadData()
+        
         var alertTextField = alertView.textFieldAtIndex(0)
         cityNameLabel.text = alertTextField!.text.capitalizedString
         currentCity = alertTextField!.text
