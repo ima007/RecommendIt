@@ -35,7 +35,6 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     override func viewDidAppear(animated: Bool) {
         notesTextView.becomeFirstResponder()
         if (yelpBusiness != nil) {
-            addLocationButton.hidden = true
             locationNameLabel.text = yelpBusiness.name
             locationNameLabel.hidden = false
         }
@@ -77,26 +76,13 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         
         thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
         thisLocation.name = yelpBusiness.name
-        thisLocation.yelpId = yelpBusiness.yelpId!
+        thisLocation.yelpId = yelpBusiness.yelpId
         thisLocation.city = ""
         thisLocation.notes = notesTextView.text
         thisLocation.archived = false
         
-        var imageUrl:NSURL = NSURL(string: yelpBusiness.image!)!
-        let request:NSURLRequest = NSURLRequest(URL: imageUrl)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-            if error == nil {
-                var image = UIImage(data: data)!
-                self.thisLocation.image = UIImagePNGRepresentation(image)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
-                })
-            }
-            else {
-                println("Error: \(error.localizedDescription)")
-            }
+        yelpBusiness.getImage({ (imageData) -> () in
+            self.thisLocation.image = imageData
         })
         
         self.dismissViewControllerAnimated(true, completion: nil)

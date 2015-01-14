@@ -66,12 +66,16 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             let businesses = response["businesses"] as NSArray
             
             for business in businesses {
-                var businessModel = YelpBusinessModel(name: business["name"] as String)
-                businessModel.yelpId = business["id"] as? String
-                businessModel.image = business["image_url"] as? String
-                businessModel.url = business["mobile_url"] as? String
-                // TODO: Figure out how to get city
-                // businessModel.city = (business["location"] as String)
+                var businessModel = YelpBusinessModel(yelpId: business["id"] as String)
+                if let businessName = business["name"] as? String {
+                    businessModel.name = businessName
+                }
+                if let businessImage = business["image_url"] as? String {
+                    businessModel.image = businessImage
+                }
+                if let businessUrl = business["mobile_url"] as? String {
+                    businessModel.url = businessUrl
+                }
                 self.results.append(businessModel)
             }
             self.resultsTableView.reloadData()

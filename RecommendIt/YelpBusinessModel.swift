@@ -10,14 +10,44 @@ import Foundation
 
 class YelpBusinessModel {
     
-    var name: String
-    var yelpId: String?
-    var image: String?
-    var url: String?
-    var city: String?
+    // required
+    var yelpId: String = ""
     
-    init (name: String) {
-        self.name = name
+    // optional properties
+    var name: String = ""
+    var image: String = ""
+    var url: String = ""
+    var city: String = ""
+    
+    init(yelpId: String) {
+        self.yelpId = yelpId
+    }
+    
+    func getImage(completionHandler: (imageData: NSData) -> ()) {
+        
+        if self.image == "" {
+            var image = UIImage(named: "Placeholder")
+            var imageData = UIImagePNGRepresentation(image)
+            completionHandler(imageData: imageData)
+            return
+        }
+        
+        var imageUrl:NSURL = NSURL(string: self.image)!
+        let request:NSURLRequest = NSURLRequest(URL: imageUrl)
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+            if error == nil {
+                var image = UIImage(data: data)!
+                var imageData = UIImagePNGRepresentation(image)
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(imageData: imageData)
+                })
+                
+            }
+            else {
+                println("Error: \(error.localizedDescription)")
+            }
+        })
     }
     
 }
