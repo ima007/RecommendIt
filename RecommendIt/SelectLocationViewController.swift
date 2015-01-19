@@ -116,6 +116,8 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        locationSearch.becomeFirstResponder()
+        
         if buttonIndex == 0 {
             return
         }
@@ -130,7 +132,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         var alertTextField = alertView.textFieldAtIndex(0)
         cityNameLabel.text = alertTextField!.text.capitalizedString
         currentCity = alertTextField!.text
-        locationSearch.becomeFirstResponder()
     }
     
     // CLLocationManagerDelegate
