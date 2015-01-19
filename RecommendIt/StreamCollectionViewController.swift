@@ -28,8 +28,6 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         
         // custom nav bar
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1)
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         // show a message if there are no recommendations
