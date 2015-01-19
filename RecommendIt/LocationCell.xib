@@ -7,14 +7,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LocationCell" id="6xz-Ze-qSE" customClass="LocationCell">
-            <rect key="frame" x="0.0" y="0.0" width="362" height="142"/>
+            <rect key="frame" x="0.0" y="0.0" width="362" height="132"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="142"/>
+                <rect key="frame" x="0.0" y="0.0" width="362" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fy2-yl-sgW">
-                        <rect key="frame" x="0.0" y="0.0" width="10" height="142"/>
+                        <rect key="frame" x="0.0" y="0.0" width="10" height="132"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="2Sg-Zb-7sa"/>
@@ -37,26 +37,47 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Notes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeC-1Y-TKj">
-                        <rect key="frame" x="60" y="26" width="262" height="106"/>
+                        <rect key="frame" x="60" y="26" width="262" height="68"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BW-ne-Ipf">
-                        <rect key="frame" x="8" y="104" width="30" height="30"/>
-                        <state key="normal" title="Yelp">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVj-QI-5Bp">
+                        <rect key="frame" x="127" y="102" width="117" height="30"/>
+                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="fnT-Hf-HPF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                        <state key="normal" title="Archive" image="Archive">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVj-QI-5Bp">
-                        <rect key="frame" x="158" y="104" width="51" height="30"/>
-                        <state key="normal" title="Archive">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1p-4O-s57">
+                        <rect key="frame" x="245" y="102" width="117" height="30"/>
+                        <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="la8-hG-fmT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                        <state key="normal" title="Delete" image="Delete">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1p-4O-s57">
-                        <rect key="frame" x="308" y="104" width="44" height="30"/>
-                        <state key="normal" title="Delete">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BW-ne-Ipf">
+                        <rect key="frame" x="10" y="102" width="116.5" height="30"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="gQg-rE-8xq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                        <state key="normal" title="Yelp" image="Yelp">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -67,22 +88,55 @@
             <constraints>
                 <constraint firstItem="YBg-cO-iiL" firstAttribute="leading" secondItem="6xz-Ze-qSE" secondAttribute="leading" constant="60" id="0gV-Qj-ziw"/>
                 <constraint firstItem="eeC-1Y-TKj" firstAttribute="leading" secondItem="6xz-Ze-qSE" secondAttribute="leading" constant="60" id="80Y-iY-Cda"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="leading" secondItem="fy2-yl-sgW" secondAttribute="trailing" constant="118" id="8f7-tc-Mx7"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="leading" secondItem="2BW-ne-Ipf" secondAttribute="trailing" constant="1" id="8p3-Ba-GHR"/>
                 <constraint firstItem="YBg-cO-iiL" firstAttribute="top" secondItem="6xz-Ze-qSE" secondAttribute="top" constant="8" id="8xh-ZB-x9i"/>
+                <constraint firstAttribute="bottom" secondItem="2BW-ne-Ipf" secondAttribute="bottom" id="BUP-Ar-usK"/>
                 <constraint firstAttribute="bottom" secondItem="2BW-ne-Ipf" secondAttribute="bottom" constant="8" id="DVD-5L-ozf"/>
+                <constraint firstItem="a1p-4O-s57" firstAttribute="leading" secondItem="jVj-QI-5Bp" secondAttribute="trailing" constant="1" id="EFB-8h-Aga"/>
+                <constraint firstItem="2BW-ne-Ipf" firstAttribute="leading" secondItem="fy2-yl-sgW" secondAttribute="trailing" id="G6x-Gb-bQI"/>
                 <constraint firstItem="fy2-yl-sgW" firstAttribute="leading" secondItem="6xz-Ze-qSE" secondAttribute="leading" id="GIo-0m-hUg"/>
+                <constraint firstItem="a1p-4O-s57" firstAttribute="leading" secondItem="jVj-QI-5Bp" secondAttribute="trailing" constant="1" id="ILD-m4-A7B"/>
+                <constraint firstItem="2BW-ne-Ipf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wNX-tn-8ce" secondAttribute="bottom" constant="10" id="LuD-vQ-aI3"/>
                 <constraint firstItem="fy2-yl-sgW" firstAttribute="top" secondItem="6xz-Ze-qSE" secondAttribute="top" id="N5k-MZ-yuF"/>
                 <constraint firstAttribute="bottom" secondItem="fy2-yl-sgW" secondAttribute="bottom" id="PAd-76-fLL"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wNX-tn-8ce" secondAttribute="bottom" constant="10" id="QPk-w7-bFI"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="width" secondItem="2BW-ne-Ipf" secondAttribute="width" id="RBj-As-Nbc"/>
+                <constraint firstItem="a1p-4O-s57" firstAttribute="width" secondItem="jVj-QI-5Bp" secondAttribute="width" id="Si7-nB-oEA"/>
                 <constraint firstAttribute="bottom" secondItem="jVj-QI-5Bp" secondAttribute="bottom" constant="8" id="WfQ-ur-aKK"/>
+                <constraint firstAttribute="trailing" secondItem="jVj-QI-5Bp" secondAttribute="trailing" constant="118" id="fXw-hD-DHY"/>
                 <constraint firstAttribute="trailing" secondItem="YBg-cO-iiL" secondAttribute="trailing" constant="41" id="gE3-vZ-9m6"/>
                 <constraint firstAttribute="bottom" secondItem="a1p-4O-s57" secondAttribute="bottom" constant="8" id="gTS-GD-UWC"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="top" secondItem="eeC-1Y-TKj" secondAttribute="bottom" constant="8" id="h36-Zu-fSB"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="leading" secondItem="2BW-ne-Ipf" secondAttribute="trailing" id="iDe-NT-Hzo"/>
+                <constraint firstAttribute="trailing" secondItem="a1p-4O-s57" secondAttribute="trailing" id="llM-h4-lfm"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="leading" secondItem="2BW-ne-Ipf" secondAttribute="trailing" constant="1" id="mFF-ll-rUj"/>
                 <constraint firstAttribute="trailing" secondItem="eeC-1Y-TKj" secondAttribute="trailing" constant="40" id="n2I-Ug-1ew"/>
+                <constraint firstItem="2BW-ne-Ipf" firstAttribute="leading" secondItem="6xz-Ze-qSE" secondAttribute="leading" id="oS2-uw-UQk"/>
+                <constraint firstAttribute="bottom" secondItem="a1p-4O-s57" secondAttribute="bottom" id="okU-Ba-XuX"/>
+                <constraint firstAttribute="trailing" secondItem="a1p-4O-s57" secondAttribute="trailing" id="okV-j3-GBb"/>
                 <constraint firstItem="eeC-1Y-TKj" firstAttribute="top" secondItem="YBg-cO-iiL" secondAttribute="bottom" id="r0b-ap-kfs"/>
-                <constraint firstAttribute="bottom" secondItem="eeC-1Y-TKj" secondAttribute="bottom" constant="10" id="wKw-Ic-f1P"/>
+                <constraint firstAttribute="bottom" secondItem="jVj-QI-5Bp" secondAttribute="bottom" id="tCu-OX-Afm"/>
+                <constraint firstItem="jVj-QI-5Bp" firstAttribute="width" secondItem="a1p-4O-s57" secondAttribute="width" id="txZ-YX-lJK"/>
                 <constraint firstItem="wNX-tn-8ce" firstAttribute="leading" secondItem="fy2-yl-sgW" secondAttribute="trailing" constant="-10" id="xFw-fG-D8q"/>
                 <constraint firstItem="wNX-tn-8ce" firstAttribute="top" secondItem="6xz-Ze-qSE" secondAttribute="top" constant="8" id="yK2-Am-ji7"/>
+                <constraint firstItem="2BW-ne-Ipf" firstAttribute="width" secondItem="jVj-QI-5Bp" secondAttribute="width" id="ydj-Zg-dAs"/>
             </constraints>
-            <size key="customSize" width="362" height="142"/>
+            <size key="customSize" width="362" height="132"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DVD-5L-ozf"/>
+                    <exclude reference="oS2-uw-UQk"/>
+                    <exclude reference="8f7-tc-Mx7"/>
+                    <exclude reference="8p3-Ba-GHR"/>
+                    <exclude reference="RBj-As-Nbc"/>
+                    <exclude reference="WfQ-ur-aKK"/>
+                    <exclude reference="fXw-hD-DHY"/>
+                    <exclude reference="iDe-NT-Hzo"/>
+                    <exclude reference="txZ-YX-lJK"/>
+                    <exclude reference="EFB-8h-Aga"/>
+                    <exclude reference="gTS-GD-UWC"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="archiveButton" destination="jVj-QI-5Bp" id="NOr-5M-Ai0"/>
                 <outlet property="deleteButton" destination="a1p-4O-s57" id="y3J-VR-aXI"/>
@@ -91,7 +145,12 @@
                 <outlet property="notesLabel" destination="eeC-1Y-TKj" id="tY3-Vr-Tgi"/>
                 <outlet property="yelpButton" destination="2BW-ne-Ipf" id="Nvg-kn-46E"/>
             </connections>
-            <point key="canvasLocation" x="339" y="169"/>
+            <point key="canvasLocation" x="333" y="185"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Archive" width="50" height="50"/>
+        <image name="Delete" width="50" height="50"/>
+        <image name="Yelp" width="50" height="50"/>
+    </resources>
 </document>
