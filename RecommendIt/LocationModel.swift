@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+let isYelpInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string: "yelp://")!)
+
 @objc(LocationModel)
 class LocationModel: NSManagedObject {
     
@@ -19,5 +21,13 @@ class LocationModel: NSManagedObject {
     @NSManaged var recommendedBy:String
     @NSManaged var image:NSData
     @NSManaged var archived:Bool
+    
+    func goToYelp() {
+        if isYelpInstalled {
+            UIApplication.sharedApplication().openURL(NSURL(string: "yelp:///biz/\(self.yelpId)")!)
+        } else {
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://yelp.com/biz/\(self.yelpId)")!)
+        }
+    }
     
 }

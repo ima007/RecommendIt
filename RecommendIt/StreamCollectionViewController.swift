@@ -10,13 +10,12 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
+class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate {
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var noItemsView: UIView!
     var selectedLocation: LocationModel!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +68,10 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         cell.nameLabel.text = thisLocation.name
         cell.imageView.image = UIImage(data: thisLocation.image)
         cell.notesLabel.text = thisLocation.notes
+        
+        cell.yelpButton.addTarget(self, action: Selector("yelpButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.archiveButton.addTarget(self, action: Selector("archiveButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.deleteButton.addTarget(self, action: Selector("deleteButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         // make things look a bit nicer
         cell.imageView.layer.cornerRadius = 2.0
@@ -133,6 +136,44 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         }
     }
     
+    // buttons
+    func yelpButtonPressed(sender: UIButton) {
+        getLocationFromButton(sender).goToYelp()
+    }
+    func archiveButtonPressed(sender: UIButton) {
+        selectedLocation = getLocationFromButton(sender)
+        var alert = UIAlertView(title: "Archive", message: "Are you sure you want to archive this location?", delegate: self, cancelButtonTitle: "Nevermind", otherButtonTitles: "Yes!")
+        alert.tag = 2
+        alert.show()
+    }
+    func deleteButtonPressed(sender: UIButton) {
+        selectedLocation = getLocationFromButton(sender)
+        var alert = UIAlertView(title: "Delete", message: "Are you sure you want to delete this location? You'll lose it forever and ever!", delegate: self, cancelButtonTitle: "Aw shucks, nevermind.", otherButtonTitles: "Get it outta here!")
+        alert.tag = 3
+        alert.show()
+    }
+    
+    // alerts
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        // archive alert
+        if alertView.tag == 2 {
+            if buttonIndex == 1 {
+                selectedLocation.archived = true
+                (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+            }
+        }
+            
+        // delete alert
+        if alertView.tag == 3 {
+            if buttonIndex == 1 {
+                managedObjectContext.deleteObject(selectedLocation)
+                (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+            }
+        }
+        
+    }
+    
     // helper functions
     func setupController() -> NSFetchedResultsController {
         var request = NSFetchRequest(entityName: "Location")
@@ -158,6 +199,12 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         theView.addSubview(theLabel)
 
         return theView
+    }
+    
+    func getLocationFromButton(button: UIButton) -> LocationModel {
+        var buttonOriginInTableView = button.convertPoint(CGPointZero, toView: self.collectionView)
+        var indexPath = self.collectionView?.indexPathForItemAtPoint(buttonOriginInTableView)
+        return fetchedResultsController.objectAtIndexPath(indexPath!) as LocationModel
     }
     
     func deleteLocation(location: LocationModel) {
