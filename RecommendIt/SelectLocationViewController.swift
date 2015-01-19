@@ -44,19 +44,20 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         cityNameLabel.text = currentCity.capitalizedString
         locationSearch.becomeFirstResponder()
         
+        // we need to do all this just to get the text color in the serach bar to be white :(
+        for sv in locationSearch.subviews[0].subviews {
+            if sv.isKindOfClass(UITextField) {
+                var textField: UITextField = sv as UITextField;
+                textField.textColor = UIColor.whiteColor()
+            }
+        }
+        
         // setup the location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        // setup cancel button above keyboard
-        var cancelButton = UIButton(frame: CGRectMake(0.0, 0.0, self.view.frame.width, 50.0))
-        cancelButton.backgroundColor = UIColor.lightGrayColor()
-        cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
-        cancelButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        cancelButton.addTarget(self, action: Selector("cancelButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
-        locationSearch.inputAccessoryView = cancelButton
     }
     
     // Get the results from Yelp
@@ -92,6 +93,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedBusiness = self.results[indexPath.row] as YelpBusinessModel
         addNewVC?.yelpBusiness = selectedBusiness
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -145,10 +150,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         locationSearch.resignFirstResponder()
         alert.show()
         
-    }
-    
-    func cancelButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

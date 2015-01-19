@@ -83,6 +83,7 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
         
         yelpBusiness.getImage({ (imageData) -> () in
             self.thisLocation.image = imageData
+            (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         })
         
         self.dismissViewControllerAnimated(true, completion: nil)
