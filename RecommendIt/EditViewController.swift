@@ -42,12 +42,7 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
             loc.archived = true
             self.navigationController?.popViewControllerAnimated(true)
             if buttonIndex == 1 {
-                let isYelpInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string: "yelp://")!)
-                if isYelpInstalled {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "yelp:///biz/\(loc.yelpId)")!)
-                } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://yelp.com/biz/\(loc.yelpId)")!)
-                }
+                openYelp()
             }
         }
             
@@ -75,5 +70,17 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         alert.show()
     }
 
-
+    @IBAction func yelpButtonPressed(sender: AnyObject) {
+        openYelp()
+    }
+    
+    // helper functions
+    func openYelp() {
+        let isYelpInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string: "yelp://")!)
+        if isYelpInstalled {
+            UIApplication.sharedApplication().openURL(NSURL(string: "yelp:///biz/\(loc.yelpId)")!)
+        } else {
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://yelp.com/biz/\(loc.yelpId)")!)
+        }
+    }
 }
