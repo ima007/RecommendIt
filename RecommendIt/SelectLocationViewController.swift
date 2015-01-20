@@ -40,7 +40,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
         // city selection
-        currentCity = "San Jose"
+        currentCity = "San Francisco"
         cityNameLabel.text = currentCity.capitalizedString
         locationSearch.becomeFirstResponder()
         
@@ -54,7 +54,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         
         // setup the location manager
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
@@ -62,10 +62,6 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidDisappear(animated: Bool) {
         locationManager.stopUpdatingLocation()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        locationManager.startUpdatingLocation()
     }
     
     // Get the results from Yelp
@@ -145,10 +141,16 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
-            if placemarks.count > 0 {
-                var locality = (placemarks[0] as CLPlacemark).locality
-                self.currentCity = locality
-                self.cityNameLabel.text = locality
+            if !(error != nil) {
+                if placemarks.count > 0 {
+                    var locality = (placemarks[0] as CLPlacemark).locality
+                    self.currentCity = locality
+                    self.cityNameLabel.text = locality
+                    self.locationManager.stopUpdatingLocation()
+                }
+            }
+            else {
+                println(error)
             }
         })
     }
