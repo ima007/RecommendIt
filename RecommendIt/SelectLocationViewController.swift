@@ -60,6 +60,14 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        locationManager.startUpdatingLocation()
+    }
+    
     // Get the results from Yelp
     func getBusinessResults(searchTerm: String) -> Void {
         client.searchWithTerm(searchTerm, location: currentCity, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
