@@ -501,22 +501,22 @@
                                 <exclude reference="DnA-Or-8pb"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Pj7-ej-oQW"/>
-                                <exclude reference="QNa-MZ-0xk"/>
-                                <exclude reference="S2F-ZL-mL1"/>
-                                <exclude reference="QLo-C8-qPg"/>
-                                <exclude reference="o3v-2F-CEU"/>
-                                <exclude reference="v2X-hr-5lb"/>
-                                <exclude reference="PKv-U6-mb4"/>
-                                <exclude reference="kdw-tt-dzi"/>
-                                <exclude reference="wdp-9O-bvO"/>
-                                <exclude reference="SYW-hF-gxe"/>
-                                <exclude reference="kta-pr-4DN"/>
-                                <exclude reference="ygK-fQ-FGN"/>
                                 <exclude reference="7U2-nJ-6vR"/>
                                 <exclude reference="Yt1-7c-sih"/>
                                 <exclude reference="wQu-aZ-YfF"/>
                                 <exclude reference="TaB-n2-ZBO"/>
+                                <exclude reference="QLo-C8-qPg"/>
+                                <exclude reference="o3v-2F-CEU"/>
+                                <exclude reference="v2X-hr-5lb"/>
+                                <exclude reference="SYW-hF-gxe"/>
+                                <exclude reference="kta-pr-4DN"/>
+                                <exclude reference="ygK-fQ-FGN"/>
+                                <exclude reference="PKv-U6-mb4"/>
+                                <exclude reference="kdw-tt-dzi"/>
+                                <exclude reference="wdp-9O-bvO"/>
+                                <exclude reference="Pj7-ej-oQW"/>
+                                <exclude reference="QNa-MZ-0xk"/>
+                                <exclude reference="S2F-ZL-mL1"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -528,22 +528,22 @@
                                 <include reference="DnA-Or-8pb"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Pj7-ej-oQW"/>
-                                <include reference="QNa-MZ-0xk"/>
-                                <include reference="S2F-ZL-mL1"/>
-                                <include reference="QLo-C8-qPg"/>
-                                <include reference="o3v-2F-CEU"/>
-                                <include reference="v2X-hr-5lb"/>
-                                <include reference="PKv-U6-mb4"/>
-                                <include reference="kdw-tt-dzi"/>
-                                <include reference="wdp-9O-bvO"/>
-                                <include reference="SYW-hF-gxe"/>
-                                <include reference="kta-pr-4DN"/>
-                                <include reference="ygK-fQ-FGN"/>
                                 <include reference="7U2-nJ-6vR"/>
                                 <include reference="Yt1-7c-sih"/>
                                 <include reference="wQu-aZ-YfF"/>
                                 <include reference="TaB-n2-ZBO"/>
+                                <include reference="QLo-C8-qPg"/>
+                                <include reference="o3v-2F-CEU"/>
+                                <include reference="v2X-hr-5lb"/>
+                                <include reference="SYW-hF-gxe"/>
+                                <include reference="kta-pr-4DN"/>
+                                <include reference="ygK-fQ-FGN"/>
+                                <include reference="PKv-U6-mb4"/>
+                                <include reference="kdw-tt-dzi"/>
+                                <include reference="wdp-9O-bvO"/>
+                                <include reference="Pj7-ej-oQW"/>
+                                <include reference="QNa-MZ-0xk"/>
+                                <include reference="S2F-ZL-mL1"/>
                             </mask>
                         </variation>
                     </view>
