@@ -19,6 +19,8 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     var yelpBusiness: YelpBusinessModel!
     var thisLocation: LocationModel!
     
+    var editVC: EditViewController!
+    
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
     override func viewDidLoad() {
@@ -33,6 +35,14 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     }
     
     override func viewDidAppear(animated: Bool) {
+        // if we're coming from the edit view, set the location
+        if (editVC.loc != nil) {
+            yelpBusiness = YelpBusinessModel(yelpId: editVC.loc.yelpId)
+            thisLocation = editVC.loc
+            yelpBusiness.name = editVC.loc.name
+            notesPlaceholderLabel.hidden = true
+            notesTextView.text = editVC.loc.notes
+        }
         notesTextView.becomeFirstResponder()
         if (yelpBusiness != nil) {
             locationNameLabel.text = yelpBusiness.name
@@ -74,12 +84,18 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
             return
         }
         
-        thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
+        // if this is a new location, create a new instance of the LocationModel
+        if (editVC.loc == nil) {
+            thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
+            thisLocation.archived = false
+        }
+        
+        // and always do this (new LocationModel or not)
         thisLocation.name = yelpBusiness.name
         thisLocation.yelpId = yelpBusiness.yelpId
         thisLocation.city = ""
         thisLocation.notes = notesTextView.text
-        thisLocation.archived = false
+        
         
         yelpBusiness.getImage({ (imageData) -> () in
             self.thisLocation.image = imageData

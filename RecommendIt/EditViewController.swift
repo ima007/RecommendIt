@@ -58,6 +58,13 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditNotesSegue" {
+            let addNewVC: AddNewViewController = segue.destinationViewController as AddNewViewController
+            addNewVC.editVC = self
+        }
+    }
+    
     @IBAction func archiveButtonPressed(sender: AnyObject) {
         var alert: UIAlertView = UIAlertView(title: "Archived!", message: "Would you like to go to the location's Yelp page so that you can review and/or check-in?", delegate: self, cancelButtonTitle: "Nah. Yelp is for losers.", otherButtonTitles: "Of course! Why wouldn't I?")
         alert.tag = 1
@@ -70,6 +77,10 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         alert.show()
     }
 
+    @IBAction func editButtonClicked(sender: AnyObject) {
+        
+    }
+    
     @IBAction func yelpButtonPressed(sender: AnyObject) {
         loc.goToYelp()
     }
