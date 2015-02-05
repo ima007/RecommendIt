@@ -768,6 +768,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="archiveButton" destination="TAD-gV-nM2" id="fu4-YV-mdD"/>
                         <outlet property="locationImage" destination="Iba-ET-JFg" id="3Bm-cG-Dcb"/>
                         <outlet property="locationName" destination="PSI-QG-Src" id="i4v-WP-mEO"/>
                         <outlet property="locationNotes" destination="9Hr-Qq-NYu" id="4cg-xX-xRd"/>
