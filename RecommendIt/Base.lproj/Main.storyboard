@@ -15,6 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ISh-jU-8CU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XBf-7Q-nIX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c37-QC-SSv">
@@ -116,18 +117,18 @@
                                 <exclude reference="iIP-Zd-aKr"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Nwi-FJ-TTY"/>
-                                <exclude reference="jjD-cO-veh"/>
-                                <exclude reference="orG-wA-oOs"/>
                                 <exclude reference="Whn-BQ-GH2"/>
                                 <exclude reference="ccB-wR-ey6"/>
                                 <exclude reference="e5y-tJ-gjQ"/>
                                 <exclude reference="idf-Gc-bZ6"/>
                                 <exclude reference="Bnm-Vw-qao"/>
                                 <exclude reference="kZM-CF-xed"/>
+                                <exclude reference="dgl-pU-VlC"/>
                                 <exclude reference="3fP-h9-era"/>
                                 <exclude reference="AmT-4V-9vs"/>
-                                <exclude reference="dgl-pU-VlC"/>
+                                <exclude reference="Nwi-FJ-TTY"/>
+                                <exclude reference="jjD-cO-veh"/>
+                                <exclude reference="orG-wA-oOs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -139,18 +140,18 @@
                                 <include reference="iIP-Zd-aKr"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Nwi-FJ-TTY"/>
-                                <include reference="jjD-cO-veh"/>
-                                <include reference="orG-wA-oOs"/>
                                 <include reference="Whn-BQ-GH2"/>
                                 <include reference="ccB-wR-ey6"/>
                                 <include reference="e5y-tJ-gjQ"/>
                                 <include reference="idf-Gc-bZ6"/>
                                 <include reference="Bnm-Vw-qao"/>
                                 <include reference="kZM-CF-xed"/>
+                                <include reference="dgl-pU-VlC"/>
                                 <include reference="3fP-h9-era"/>
                                 <include reference="AmT-4V-9vs"/>
-                                <include reference="dgl-pU-VlC"/>
+                                <include reference="Nwi-FJ-TTY"/>
+                                <include reference="jjD-cO-veh"/>
+                                <include reference="orG-wA-oOs"/>
                             </mask>
                         </variation>
                     </view>
