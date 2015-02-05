@@ -19,10 +19,12 @@ class SettingsViewController: UIViewController {
         
         userSettings = NSUserDefaults.standardUserDefaults()
         
-        if (userSettings.objectForKey("archived") as String == "YES") {
-            archiveSwitch.on = true
-        } else {
-            archiveSwitch.on = false
+        if (userSettings.objectForKey("archived") != nil) {
+            if (userSettings.objectForKey("archived") as String == "YES") {
+                archiveSwitch.on = true
+            } else {
+                archiveSwitch.on = false
+            }
         }
 
         // Do any additional setup after loading the view.
