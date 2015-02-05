@@ -13,6 +13,7 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var locationName: UILabel!
     @IBOutlet weak var locationNotes: UILabel!
+    @IBOutlet weak var archiveButton: UIButton!
     
     var streamVC: StreamCollectionViewController!
     var loc: LocationModel!
@@ -28,6 +29,11 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         locationImage.image = UIImage(data: loc.image)
         locationName.text = loc.name
         locationNotes.text = loc.notes
+        
+        // change button text if it's archived
+        if (loc.archived) {
+            archiveButton.setTitle("Unarchive it", forState: UIControlState.Normal)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +65,15 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
     }
     
     @IBAction func archiveButtonPressed(sender: AnyObject) {
-        var alert: UIAlertView = UIAlertView(title: "Archived!", message: "Would you like to go to the location's Yelp page so that you can review and/or check-in?", delegate: self, cancelButtonTitle: "Nah. Yelp is for losers.", otherButtonTitles: "Of course! Why wouldn't I?")
-        alert.tag = 1
-        alert.show()
+        var alert: UIAlertView
+        if (loc.archived) {
+            loc.archived = false
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            var alert = UIAlertView(title: "Archived!", message: "Would you like to go to the location's Yelp page so that you can review and/or check-in?", delegate: self, cancelButtonTitle: "Nah. Yelp is for losers.", otherButtonTitles: "Of course! Why wouldn't I?")
+            alert.tag = 1
+            alert.show()
+        }
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
