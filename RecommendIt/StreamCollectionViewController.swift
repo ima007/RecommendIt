@@ -17,14 +17,13 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var noItemsView: UIView!
     var selectedLocation: LocationModel!
+    var showArchivedResults = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // get saved locations
-        fetchedResultsController = setupController(true)
-        fetchedResultsController.delegate = self
-        fetchedResultsController.performFetch(nil)
+        updateFetchedResults(showArchivedResults)
         
         // custom nav bar
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -40,6 +39,14 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
         self.collectionView!.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // does the user want to see archived recommendations?
+        var userSettings = NSUserDefaults.standardUserDefaults()
+        showArchivedResults = (userSettings.objectForKey("archived") as String == "YES") ? true : false
+        updateFetchedResults(showArchivedResults)
+        self.collectionView?.reloadData()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -192,15 +199,16 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     }
     
     // helper functions
-    func setupController(showArchived: Bool) -> NSFetchedResultsController {
+    func updateFetchedResults(showArchived: Bool) -> Void {
         var request = NSFetchRequest(entityName: "Location")
         let sortByName = NSSortDescriptor(key: "name", ascending: true)
         let sortByArchived = NSSortDescriptor(key: "archived", ascending: true)
         let predicate = (!showArchived) ? NSPredicate(format: "archived == NO") : nil
         request.sortDescriptors = [sortByArchived, sortByName]
         request.predicate = predicate
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return fetchedResultsController
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        fetchedResultsController.performFetch(nil)
     }
     
     func setupNewItemsView() -> UIView {
