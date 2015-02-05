@@ -44,7 +44,9 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     override func viewWillAppear(animated: Bool) {
         // does the user want to see archived recommendations?
         var userSettings = NSUserDefaults.standardUserDefaults()
-        showArchivedResults = (userSettings.objectForKey("archived") as String == "YES") ? true : false
+        if (userSettings.objectForKey("archived") != nil) {
+            showArchivedResults = (userSettings.objectForKey("archived") as String == "YES") ? true : false
+        }
         updateFetchedResults(showArchivedResults)
         self.collectionView?.reloadData()
     }
