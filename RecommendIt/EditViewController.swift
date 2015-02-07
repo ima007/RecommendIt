@@ -23,11 +23,6 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         // get the location stored
         loc = streamVC.selectedLocation;
         
-        // configure stuff based on selected location
-        self.title = loc.name
-        locationImage.image = UIImage(data: loc.image)
-        locationName.text = loc.name
-        locationNotes.text = loc.notes
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,10 +53,18 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        // configure stuff based on selected location
+        self.title = loc.name
+        locationImage.image = UIImage(data: loc.image)
+        locationName.text = loc.name
+        locationNotes.text = loc.notes
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditNotesSegue" {
             let addNewVC: AddNewViewController = segue.destinationViewController as AddNewViewController
-            addNewVC.editVC = self
+            addNewVC.thisLocation = loc
         }
     }
     

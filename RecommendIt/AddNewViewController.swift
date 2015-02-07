@@ -16,10 +16,7 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var notesPlaceholderLabel: UILabel!
     
-    var yelpBusiness: YelpBusinessModel!
     var thisLocation: LocationModel!
-    
-    var editVC: EditViewController!
     
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
@@ -35,19 +32,16 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     }
     
     override func viewDidAppear(animated: Bool) {
-        // if we're coming from the edit view, set the location
-        if (editVC.loc != nil) {
-            yelpBusiness = YelpBusinessModel(yelpId: editVC.loc.yelpId)
-            thisLocation = editVC.loc
-            yelpBusiness.name = editVC.loc.name
-            notesPlaceholderLabel.hidden = true
-            notesTextView.text = editVC.loc.notes
-        }
         notesTextView.becomeFirstResponder()
-        if (yelpBusiness != nil) {
-            locationNameLabel.text = yelpBusiness.name
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if (thisLocation != nil) {
+            locationNameLabel.text = thisLocation.name
             locationNameLabel.hidden = false
+            notesTextView.text = thisLocation.notes
         }
+        showHidePlaceholder(notesTextView)
     }
     
     // UIViewController
@@ -60,11 +54,7 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     
     // UITextView
     func textViewDidChange(textView: UITextView) {
-        if textView.text == "" {
-            notesPlaceholderLabel.hidden = false
-        } else {
-            notesPlaceholderLabel.hidden = true
-        }
+        showHidePlaceholder(textView)
     }
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
@@ -72,10 +62,9 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        let description = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
         
         // check to make sure all required fields have been entered
-        if yelpBusiness == nil {
+        if thisLocation == nil {
             showError("You need to select a location")
             return
         }
@@ -84,29 +73,21 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
             return
         }
         
-        // if this is a new location, create a new instance of the LocationModel
-        if (editVC.loc == nil) {
-            thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
-            thisLocation.archived = false
-        }
-        
-        // and always do this (new LocationModel or not)
-        thisLocation.name = yelpBusiness.name
-        thisLocation.yelpId = yelpBusiness.yelpId
-        thisLocation.city = ""
         thisLocation.notes = notesTextView.text
         
-        
-        yelpBusiness.getImage({ (imageData) -> () in
-            self.thisLocation.image = imageData
-            (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
-        })
-        
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // helper functions
     func showError(msg: String) {
         UIAlertView(title: "Oops", message: msg, delegate: self, cancelButtonTitle: "Ok, let me try again").show()
+    }
+    func showHidePlaceholder(textView: UITextView) {
+        if textView.text == "" {
+            notesPlaceholderLabel.hidden = false
+        } else {
+            notesPlaceholderLabel.hidden = true
+        }
     }
 }

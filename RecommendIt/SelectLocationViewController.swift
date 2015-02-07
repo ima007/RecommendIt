@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate, CLLocationManagerDelegate {
     
@@ -30,6 +31,8 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     var currentCity = ""
     
     let locationManager = CLLocationManager()
+    
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -96,7 +99,24 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedBusiness = self.results[indexPath.row] as YelpBusinessModel
-        addNewVC?.yelpBusiness = selectedBusiness
+        let description = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
+        
+        // if this is a new location, create a new instance of the LocationModel
+        if (addNewVC?.thisLocation == nil) {
+            addNewVC?.thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
+        }
+        addNewVC?.thisLocation.archived = false
+        
+        // and always do this (new LocationModel or not)
+        addNewVC?.thisLocation.name = selectedBusiness.name
+        addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
+        addNewVC?.thisLocation.city = ""
+        addNewVC?.thisLocation.notes = ""
+        
+        selectedBusiness.getImage { (imageData) -> () in
+            self.addNewVC!.thisLocation.image = imageData
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
