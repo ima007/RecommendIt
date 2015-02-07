@@ -25,15 +25,13 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         // get saved locations
         updateFetchedResults(showArchivedResults)
         
+        // no items text
+        self.noItemsView = setupNewItemsView()
+        self.collectionView?.addSubview(self.noItemsView)
+        
         // custom nav bar
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        // show a message if there are no recommendations
-        self.noItemsView = setupNewItemsView()
-        if fetchedResultsController.fetchedObjects?.count == 0 {
-            self.collectionView?.addSubview(self.noItemsView)
-        }
         
         // using a nib to have better control of the cell
         var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
@@ -48,6 +46,11 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
             showArchivedResults = (userSettings.objectForKey("archived") as String == "YES") ? true : false
         }
         updateFetchedResults(showArchivedResults)
+        if (fetchedResultsController.fetchedObjects?.count == 0) {
+            noItemsView.hidden = false
+        } else {
+            noItemsView.hidden = true
+        }
         self.collectionView?.reloadData()
     }
     
@@ -225,6 +228,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         theLabel.text = "It appears that you haven't yet added any recommendations! Get out there and chat it up with some friends about food. Once you have a recommendation, press the + button in the upper right corner to add it!"
         
         theView.addSubview(theLabel)
+        theView.hidden = true
 
         return theView
     }
