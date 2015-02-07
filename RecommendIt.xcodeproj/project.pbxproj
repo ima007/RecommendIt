@@ -15,6 +15,7 @@
 		E71689DE19F388ED008091A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71689DC19F388ED008091A9 /* LaunchScreen.xib */; };
 		E71689EA19F388ED008091A9 /* RecommendItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71689E919F388ED008091A9 /* RecommendItTests.swift */; };
 		E72E4E841A352E330082C5C5 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72E4E831A352E330082C5C5 /* AddNewViewController.swift */; };
+		E74875AF1A83054400813D9E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74875AE1A83054400813D9E /* SettingsViewController.swift */; };
 		E74992C519F4CACD0076E999 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C419F4CACD0076E999 /* SelectLocationViewController.swift */; };
 		E74992C719F4DA680076E999 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74992C619F4DA680076E999 /* EditViewController.swift */; };
 		E751039A1A31542200F230B5 /* Yelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75103991A31542200F230B5 /* Yelp.swift */; };
@@ -51,6 +52,7 @@
 		E71689E819F388ED008091A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E71689E919F388ED008091A9 /* RecommendItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItTests.swift; sourceTree = "<group>"; };
 		E72E4E831A352E330082C5C5 /* AddNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
+		E74875AE1A83054400813D9E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E74992C419F4CACD0076E999 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		E74992C619F4DA680076E999 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		E75103961A31539100F230B5 /* RecommendIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecommendIt-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				E74992C419F4CACD0076E999 /* SelectLocationViewController.swift */,
 				E74992C619F4DA680076E999 /* EditViewController.swift */,
 				E78623211A37A604001EE40D /* StreamCollectionViewController.swift */,
+				E74875AE1A83054400813D9E /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			files = (
 				E74992C519F4CACD0076E999 /* SelectLocationViewController.swift in Sources */,
 				E78623221A37A604001EE40D /* StreamCollectionViewController.swift in Sources */,
+				E74875AF1A83054400813D9E /* SettingsViewController.swift in Sources */,
 				E71689D119F388ED008091A9 /* AppDelegate.swift in Sources */,
 				E7939C0919F392C1000BAD75 /* LocationCell.swift in Sources */,
 				E7939C0D19F395AC000BAD75 /* LocationModel.swift in Sources */,

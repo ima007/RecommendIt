@@ -13,32 +13,45 @@ import CoreLocation
 class StreamCollectionViewController: UICollectionViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate, UIAlertViewDelegate {
     
     var fetchedResultsController:NSFetchedResultsController = NSFetchedResultsController()
+    var fetchedArchivedResultsController:NSFetchedResultsController = NSFetchedResultsController()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var noItemsView: UIView!
     var selectedLocation: LocationModel!
+    var showArchivedResults = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // get saved locations
-        fetchedResultsController = setupController()
-        fetchedResultsController.delegate = self
-        fetchedResultsController.performFetch(nil)
+        updateFetchedResults(showArchivedResults)
+        
+        // no items text
+        self.noItemsView = setupNewItemsView()
+        self.collectionView?.addSubview(self.noItemsView)
         
         // custom nav bar
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
-        // show a message if there are no recommendations
-        self.noItemsView = setupNewItemsView()
-        if fetchedResultsController.fetchedObjects?.count == 0 {
-            self.collectionView?.addSubview(self.noItemsView)
-        }
-        
         // using a nib to have better control of the cell
         var locationCellNib = UINib(nibName: "LocationCell", bundle: nil)
         self.collectionView!.registerNib(locationCellNib, forCellWithReuseIdentifier: "LocationCell")
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // does the user want to see archived recommendations?
+        var userSettings = NSUserDefaults.standardUserDefaults()
+        if (userSettings.objectForKey("archived") != nil) {
+            showArchivedResults = (userSettings.objectForKey("archived") as String == "YES") ? true : false
+        }
+        updateFetchedResults(showArchivedResults)
+        if (fetchedResultsController.fetchedObjects?.count == 0) {
+            noItemsView.hidden = false
+        } else {
+            noItemsView.hidden = true
+        }
+        self.collectionView?.reloadData()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -64,6 +77,15 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         
         var cell:LocationCell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as LocationCell
         let thisLocation = fetchedResultsController.objectAtIndexPath(indexPath) as LocationModel
+        var buttonTitle: String
+        
+        if (thisLocation.archived) {
+            buttonTitle = "Unarchive"
+            cell.layer.opacity = 0.25
+        } else {
+            buttonTitle = "Archive"
+            cell.layer.opacity = 1.0
+        }
         
         cell.nameLabel.text = thisLocation.name
         cell.imageView.image = UIImage(data: thisLocation.image)
@@ -71,6 +93,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         
         cell.yelpButton.addTarget(self, action: Selector("yelpButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         cell.archiveButton.addTarget(self, action: Selector("archiveButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
+        cell.archiveButton.setTitle(buttonTitle, forState: UIControlState.Normal)
         cell.deleteButton.addTarget(self, action: Selector("deleteButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         // make things look a bit nicer
@@ -142,7 +165,13 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     }
     func archiveButtonPressed(sender: UIButton) {
         selectedLocation = getLocationFromButton(sender)
-        var alert = UIAlertView(title: "Archive", message: "Are you sure you want to archive this location?", delegate: self, cancelButtonTitle: "Nevermind", otherButtonTitles: "Yes!")
+        var msg: String
+        if (selectedLocation.archived) {
+            msg = "Are you sure you want to unarchive this location?"
+        } else {
+            msg = "Are you sure you want to archive this location?"
+        }
+        var alert = UIAlertView(title: "Archive", message: msg, delegate: self, cancelButtonTitle: "Nevermind", otherButtonTitles: "Yes!")
         alert.tag = 2
         alert.show()
     }
@@ -159,7 +188,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         // archive alert
         if alertView.tag == 2 {
             if buttonIndex == 1 {
-                selectedLocation.archived = true
+                selectedLocation.archived = !selectedLocation.archived
                 (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
             }
         }
@@ -175,14 +204,16 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
     }
     
     // helper functions
-    func setupController() -> NSFetchedResultsController {
+    func updateFetchedResults(showArchived: Bool) -> Void {
         var request = NSFetchRequest(entityName: "Location")
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        let predicate = NSPredicate(format: "archived == NO")
-        request.sortDescriptors = [sortDescriptor]
+        let sortByName = NSSortDescriptor(key: "name", ascending: true)
+        let sortByArchived = NSSortDescriptor(key: "archived", ascending: true)
+        let predicate = (!showArchived) ? NSPredicate(format: "archived == NO") : nil
+        request.sortDescriptors = [sortByArchived, sortByName]
         request.predicate = predicate
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return fetchedResultsController
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        fetchedResultsController.performFetch(nil)
     }
     
     func setupNewItemsView() -> UIView {
@@ -197,6 +228,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         theLabel.text = "It appears that you haven't yet added any recommendations! Get out there and chat it up with some friends about food. Once you have a recommendation, press the + button in the upper right corner to add it!"
         
         theView.addSubview(theLabel)
+        theView.hidden = true
 
         return theView
     }
