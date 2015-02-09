@@ -45,7 +45,13 @@ class YelpBusinessModel {
                 
             }
             else {
+                // log the error
                 println("Error: \(error.localizedDescription)")
+                
+                // use a placeholder instead
+                var image = UIImage(named: "Placeholder")
+                var imageData = UIImagePNGRepresentation(image)
+                completionHandler(imageData: imageData)
             }
         })
     }
