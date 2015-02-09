@@ -192,7 +192,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="My Recommendations" id="1OY-4O-CPO">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="VT6-IG-Y7e">
+                        <barButtonItem key="leftBarButtonItem" image="Gear" id="VT6-IG-Y7e">
                             <connections>
                                 <segue destination="Sqy-c4-OyZ" kind="presentation" id="YRS-Ih-3Js"/>
                             </connections>
@@ -979,7 +979,10 @@
             <point key="canvasLocation" x="1860" y="-224.25"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Gear" width="29" height="29"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gwt-AH-H8W"/>
+        <segue reference="P9V-Di-u14"/>
     </inferredMetricsTieBreakers>
 </document>
