@@ -108,10 +108,8 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         addNewVC?.thisLocation.archived = false
         
         // and always do this (new LocationModel or not)
-        addNewVC?.thisLocation.name = selectedBusiness.name
+        addNewVC?.thisLocation.name = selectedBusiness.name!
         addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
-        addNewVC?.thisLocation.city = ""
-        addNewVC?.thisLocation.notes = ""
         
         selectedBusiness.getImage { (imageData) -> () in
             self.addNewVC!.thisLocation.image = imageData

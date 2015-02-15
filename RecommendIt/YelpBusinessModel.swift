@@ -11,13 +11,13 @@ import Foundation
 class YelpBusinessModel {
     
     // required
-    var yelpId: String = ""
+    var yelpId: String
     
     // optional properties
-    var name: String = ""
-    var image: String = ""
-    var url: String = ""
-    var city: String = ""
+    var name: String?
+    var image: String?
+    var url: String?
+    var city: String?
     
     init(yelpId: String) {
         self.yelpId = yelpId
@@ -32,8 +32,8 @@ class YelpBusinessModel {
             return
         }
         
-        var imageUrl:NSURL = NSURL(string: self.image)!
-        let request:NSURLRequest = NSURLRequest(URL: imageUrl)
+        var imageUrl: NSURL = NSURL(string: self.image!)!
+        let request: NSURLRequest = NSURLRequest(URL: imageUrl)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
             if error == nil {
