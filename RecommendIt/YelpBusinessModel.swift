@@ -25,7 +25,7 @@ class YelpBusinessModel {
     
     func getImage(completionHandler: (imageData: NSData) -> ()) {
         
-        if self.image == "" {
+        if self.image == nil {
             var image = UIImage(named: "Placeholder")
             var imageData = UIImagePNGRepresentation(image)
             completionHandler(imageData: imageData)

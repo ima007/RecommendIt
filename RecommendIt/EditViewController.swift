@@ -61,7 +61,7 @@ class EditViewController: UIViewController, UIAlertViewDelegate {
     override func viewWillAppear(animated: Bool) {
         // configure stuff based on selected location
         self.title = loc.name
-        locationImage.image = UIImage(data: loc.image)
+        locationImage.image = UIImage(data: loc.image!)
         locationName.text = loc.name
         locationNotes.text = loc.notes
     }

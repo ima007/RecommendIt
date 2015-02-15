@@ -88,7 +88,7 @@ class StreamCollectionViewController: UICollectionViewController, UICollectionVi
         }
         
         cell.nameLabel.text = thisLocation.name
-        cell.imageView.image = UIImage(data: thisLocation.image)
+        cell.imageView.image = UIImage(data: thisLocation.image!)
         cell.notesLabel.text = thisLocation.notes
         
         cell.yelpButton.addTarget(self, action: Selector("yelpButtonPressed:"), forControlEvents: UIControlEvents.TouchUpInside)

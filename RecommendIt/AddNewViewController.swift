@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDelegate {
-    
+
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var locationNameLabel: UILabel!
@@ -36,10 +36,14 @@ class AddNewViewController: UIViewController, UITextViewDelegate, UIAlertViewDel
     }
     
     override func viewWillAppear(animated: Bool) {
-        if (thisLocation != nil) {
-            locationNameLabel.text = thisLocation.name
+        if thisLocation != nil {
+            if let name = thisLocation.name {
+                locationNameLabel.text = name
+            }
+            if let notes = thisLocation.notes {
+                notesTextView.text = notes
+            }
             locationNameLabel.hidden = false
-            notesTextView.text = thisLocation.notes
         }
         showHidePlaceholder(notesTextView)
     }
