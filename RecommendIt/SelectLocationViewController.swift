@@ -112,7 +112,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
         
         selectedBusiness.getImage { (imageData) -> () in
-            self.addNewVC!.thisLocation.image = imageData
+            self.addNewVC.thisLocation.image = imageData as NSData
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -159,7 +159,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: { (placemarks, error) -> Void in
-            if !(error != nil) {
+            if (error == nil) {
                 if placemarks.count > 0 {
                     var locality = (placemarks[0] as CLPlacemark).locality
                     self.currentCity = locality
