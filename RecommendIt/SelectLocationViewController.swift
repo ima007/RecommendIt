@@ -26,9 +26,15 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     // other view controllers
     var addNewVC: AddNewViewController!
     
+    var isSearching = false
+    var isStarted = false
+    
     var client: YelpClient!
     var results: [YelpBusinessModel] = []
     var currentCity = ""
+    var currentSearchText = ""
+    
+    var debouncedBusinessResults:(()->())?
     
     let locationManager = CLLocationManager()
     
@@ -36,10 +42,14 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        debouncedBusinessResults = debounce(NSTimeInterval(0.25),dispatch_get_main_queue(),getBusinessResults)
+        
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
         // city selection
@@ -47,19 +57,29 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         cityNameLabel.text = currentCity.capitalizedString
         locationSearch.becomeFirstResponder()
         
-        // we need to do all this just to get the text color in the serach bar to be white :(
+        // we need to do all this just to get the text color in the search bar to be white :(
+        
         for sv in locationSearch.subviews[0].subviews {
             if sv.isKindOfClass(UITextField) {
                 var textField: UITextField = sv as UITextField;
                 textField.textColor = UIColor.whiteColor()
             }
         }
+
         
         // setup the location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        resultsTableView.delegate = self
+        resultsTableView.dataSource = self
+        resultsTableView.rowHeight = UITableViewAutomaticDimension
+        // Need to set estimated height to *something* to allow height Automatic Dimension
+        // to take place.
+        resultsTableView.estimatedRowHeight = 100
+        resultsTableView.tableFooterView = UIView(frame:CGRectZero)
         
     }
     
@@ -68,24 +88,36 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     // Get the results from Yelp
-    func getBusinessResults(searchTerm: String) -> Void {
-        client.searchWithTerm(searchTerm, location: currentCity, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+    func getBusinessResults() -> Void {
+        //This prevents a call from being made if there's no content
+        //is actually "count" instead of "countElements" in newer versions of swift
+        if countElements(currentSearchText) == 0{
+            self.results = []
+            self.resultsTableView.reloadData()
+            return
+        }
+        isStarted = true
+        //TODO: Could use a cocoapod-provided loader here instead
+        if !isSearching {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.resultsTableView.alpha = 0.5
+            })
+        }
+        isSearching = true
+        client.searchWithTerm(currentSearchText, location: currentCity, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             self.results.removeAll(keepCapacity: false)
             let businesses = response["businesses"] as NSArray
             
             for business in businesses {
-                var businessModel = YelpBusinessModel(yelpId: business["id"] as String)
-                if let businessName = business["name"] as? String {
-                    businessModel.name = businessName
+                if let business = business as? [String:AnyObject]{
+                    var businessModel = YelpBusinessModel(business: business)
+                    self.results.append(businessModel)
                 }
-                if let businessImage = business["image_url"] as? String {
-                    businessModel.image = businessImage
-                }
-                if let businessUrl = business["mobile_url"] as? String {
-                    businessModel.url = businessUrl
-                }
-                self.results.append(businessModel)
             }
+            self.isSearching = false
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.resultsTableView.alpha = 1.0
+            })
             self.resultsTableView.reloadData()
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error)
@@ -94,7 +126,10 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     
     // UISearchBarDelegate
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        getBusinessResults(searchText)
+        self.currentSearchText = searchText
+        if let debouncedBusinessResults = debouncedBusinessResults{
+            debouncedBusinessResults()
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -110,7 +145,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         // and always do this (new LocationModel or not)
         addNewVC?.thisLocation.name = selectedBusiness.name!
         addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
-        
+
         selectedBusiness.getImage { (imageData) -> () in
             self.addNewVC.thisLocation.image = imageData as NSData
         }
@@ -124,17 +159,30 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
 
     // UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.results.count
+        if self.results.count > 0{
+            return self.results.count
+        }
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        return UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let result = self.results[indexPath.row] as YelpBusinessModel
-        var cell = UITableViewCell()
-        var label = UILabel(frame: CGRectMake(25, 0, cell.frame.width - 50, cell.frame.height))
-        label.text = result.name
-        cell.addSubview(label)
-        cell.sizeToFit()
-        return cell
+        if self.results.count > 0{
+            let result = self.results[indexPath.row]
+            var cell = tableView.dequeueReusableCellWithIdentifier("YelpResultCell") as YelpResultCell
+            cell.setContent(result)
+            cell.backgroundColor = UIColor.clearColor()
+            cell.sizeToFit()
+            return cell
+        }else{
+            let cell = UITableViewCell()
+            cell.textLabel?.text = isStarted ? "No results. Try another search." : "Start typing to search!"
+            cell.sizeToFit()
+            return cell
+        }
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
@@ -144,7 +192,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             return
         }
         
-        // stop getting currentn location
+        // stop getting current location
         self.locationManager.stopUpdatingLocation()
         
         // clear current search
