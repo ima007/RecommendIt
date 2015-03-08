@@ -12,8 +12,6 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
     
-    var categories:Array<Dictionary<String,String>> = [["label" : "Afghan", "value": "afghani"]]
-    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
