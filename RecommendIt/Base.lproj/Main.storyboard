@@ -485,12 +485,12 @@
                                                     <exclude reference="evw-1W-5wV"/>
                                                     <exclude reference="kP5-dW-SCP"/>
                                                     <exclude reference="vSX-37-12y"/>
-                                                    <exclude reference="mo5-yq-6Y2"/>
                                                     <exclude reference="7FG-gH-Pk9"/>
                                                     <exclude reference="Dn5-eZ-03L"/>
                                                     <exclude reference="hrl-Io-7Uf"/>
                                                     <exclude reference="lK3-1t-PhQ"/>
                                                     <exclude reference="lf6-1m-aOf"/>
+                                                    <exclude reference="mo5-yq-6Y2"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -539,6 +539,7 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="0Bv-4L-hho"/>
+                                <exclude reference="Nob-69-7LD"/>
                                 <exclude reference="6xK-Ja-eVh"/>
                                 <exclude reference="IES-MM-awz"/>
                                 <exclude reference="sDV-Sa-V19"/>
@@ -551,6 +552,8 @@
                                 <exclude reference="Aj9-Fr-zmN"/>
                                 <exclude reference="Ono-px-k1l"/>
                                 <exclude reference="VXm-Kk-SSY"/>
+                                <exclude reference="idW-HN-eCJ"/>
+                                <exclude reference="o5B-7t-ppY"/>
                                 <exclude reference="zWn-2c-jab"/>
                             </mask>
                         </variation>

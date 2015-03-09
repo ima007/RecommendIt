@@ -133,24 +133,30 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedBusiness = self.results[indexPath.row] as YelpBusinessModel
-        let description = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
-        
-        // if this is a new location, create a new instance of the LocationModel
-        if (addNewVC?.thisLocation == nil) {
-            addNewVC?.thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
+        //If there are no actual result cells, don't try to access them.
+        //This happens if the user taps on the "Start typing/No results" cell.
+        if results.count > 0 {
+            let selectedBusiness = self.results[indexPath.row] as YelpBusinessModel
+            let description = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
+            
+            // if this is a new location, create a new instance of the LocationModel
+            if (addNewVC?.thisLocation == nil) {
+                addNewVC?.thisLocation = LocationModel(entity: description!, insertIntoManagedObjectContext: managedObjectContext)
+            }
+            addNewVC?.thisLocation.archived = false
+            
+            // and always do this (new LocationModel or not)
+            addNewVC?.thisLocation.name = selectedBusiness.name!
+            addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
+            
+            selectedBusiness.getImage { (imageData) -> () in
+                self.addNewVC.thisLocation.image = imageData as NSData
+            }
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            locationSearch.becomeFirstResponder()
         }
-        addNewVC?.thisLocation.archived = false
-        
-        // and always do this (new LocationModel or not)
-        addNewVC?.thisLocation.name = selectedBusiness.name!
-        addNewVC?.thisLocation.yelpId = selectedBusiness.yelpId
-
-        selectedBusiness.getImage { (imageData) -> () in
-            self.addNewVC.thisLocation.image = imageData as NSData
-        }
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -180,6 +186,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         }else{
             let cell = UITableViewCell()
             cell.textLabel?.text = isStarted ? "No results. Try another search." : "Start typing to search!"
+            cell.selectionStyle = .None
             cell.sizeToFit()
             return cell
         }
